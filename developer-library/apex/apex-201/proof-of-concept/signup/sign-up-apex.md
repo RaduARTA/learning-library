@@ -49,7 +49,7 @@ In this part, you will create an Oracle Cloud trial account. Once you have signe
 
     From the Cloud Dashboard, select the navigation menu icon in the upper left-hand corner and then select **Autonomous Transaction Processing**.
 
-    ![](images/select-atp-in-nav-menu.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 6. Click **Create Autonomous Database**.
 

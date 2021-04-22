@@ -20,7 +20,7 @@ In this step, you will create an *Autonomous Transaction Processing* database an
 
     From the Cloud Dashboard, select the navigation menu icon in the upper left-hand corner and then select **Autonomous Transaction Processing**.
 
-    ![](images/select-atp-in-nav-menu.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 2. Click **Create Autonomous Database**.
 

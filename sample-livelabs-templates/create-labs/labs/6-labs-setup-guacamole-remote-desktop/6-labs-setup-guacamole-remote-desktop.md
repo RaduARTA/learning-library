@@ -28,7 +28,7 @@ This lab assumes you have:
     <copy>
     cat > /tmp/guac-1.sh <<EOF
     #!/bin/bash
-    export appuser=$1
+    export appuser=\$1
 
     echo "Updating the image to the latest"
     yum -y update
@@ -67,14 +67,14 @@ This lab assumes you have:
     uuid-devel
 
     echo "Updating VNC Service ..."
-    cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_${appuser}@:1.service
-    sed -i "s/<USER>/${appuser}/g" /etc/systemd/system/vncserver_${appuser}@:1.service
+    cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_\${appuser}@:1.service
+    sed -i "s/<USER>/\${appuser}/g" /etc/systemd/system/vncserver_\${appuser}@:1.service
 
     firewall-cmd --zone=public --permanent --add-service=vnc-server
     firewall-cmd --zone=public --permanent --add-port=5901/tcp
     firewall-cmd  --reload
     systemctl daemon-reload
-    systemctl enable vncserver_${appuser}@:1.service
+    systemctl enable vncserver_\${appuser}@:1.service
     systemctl daemon-reload
 
     echo "End of guac-1.sh"
@@ -89,7 +89,6 @@ This lab assumes you have:
     <copy>
     cat > /tmp/guac-2.sh <<EOF
     #!/bin/bash
-    export appuser=$1
     cd /opt/
     wget https://downloads.apache.org/guacamole/1.3.0/source/guacamole-server-1.3.0.tar.gz
     tar -xvf guacamole-server-1.3.0.tar.gz
@@ -212,12 +211,11 @@ This lab assumes you have:
     </copy>
     ```
 
-13. Run script *guac-2.sh* with the desired VNC user as the sole input parameter. e.g *oracle*
+13. Run script *guac-2.sh*
 
     ```
     <copy>
-    export appuser=oracle
-    /tmp/guac-2.sh ${appuser}
+    /tmp/guac-2.sh
     </copy>
     ```
 
@@ -353,4 +351,3 @@ You may now [proceed to the next lab](#next).
 * **Author** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2020
 * **Contributors** - - -
 * **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, February 2021
-

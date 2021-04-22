@@ -59,7 +59,7 @@ This lab assumes you have:
     hostnamectl set-hostname <host>.livelabs.oraclevcn.com
 
     # Add static name to /etc/hosts
-    echo "$(oci-metadata -g privateIp --value-only | head -1)   <host>.livelabs.oraclevcn.com  <host>" >>/etc/hosts
+    echo "\$(oci-metadata -g privateIp --value-only | head -1)   <host>.livelabs.oraclevcn.com  <host>" >>/etc/hosts
     EOF
     </copy>
     ```
@@ -75,8 +75,8 @@ This lab assumes you have:
     echo "Please provide the short hostname (not FQDN, so no domain) you would like permanently assigned to any instance created from the image:"
     read s_host
     echo ""
-    echo "The permanent/preserved FQDN will be ${s_host}.livelabs.oraclevcn.com"
-    sed -i "s/<host>/${s_host}/g" /root/bootstrap/firstboot.sh
+    echo "The permanent/preserved FQDN will be \${s_host}.livelabs.oraclevcn.com"
+    sed -i "s/<host>/\${s_host}/g" /root/bootstrap/firstboot.sh
     EOF
     chmod +x /tmp/s_host.sh
     /tmp/s_host.sh
@@ -124,7 +124,7 @@ This lab assumes you have:
     sudo rm -f /home/opc/get-pip.py
     sudo rm -f /home/opc/.bashrc-orig
     sudo rm -f /home/oracle/.bash_history
-    sudo sed -i -e 's|\\(^.*PermitRootLogin.*$\\)|PermitRootLogin no|g' /etc/ssh/sshd_config
+    sudo sed -i -e 's|\\\(^.*PermitRootLogin.*$\\\)|PermitRootLogin no|g' /etc/ssh/sshd_config
     sudo sed -i -e 's|root:x:0:0:root:/root:/bin/bash|root:x:0:0:root:/root:/sbin/nologin|g' /etc/passwd
     sudo ln -sf /root/bootstrap/firstboot.sh /var/lib/cloud/scripts/per-instance/firstboot.sh
     sudo ln -sf /root/bootstrap/eachboot.sh /var/lib/cloud/scripts/per-boot/eachboot.sh
@@ -173,4 +173,3 @@ You may now [proceed to the next lab](#next).
 * **Author** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, February 2021
 * **Contributors** - - -
 * **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, March 2021
-

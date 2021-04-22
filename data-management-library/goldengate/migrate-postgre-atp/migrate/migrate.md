@@ -125,17 +125,21 @@ For a technical overview of this lab step, please watch the following video:
 
 ## **Step 11**: Edit Parameter File
 
-1. Microservices has created a draft parameter file for your convenience. Erase existing and paste below configuration:
+1. Microservices has created a draft parameter file for your convenience. Erase only below line from the existing draft parameter:
+
+	```MAP *.*, TARGET *.*```
+
+	![](/images/micro_initload_3_1.png)
+
+2. Then add below configuration instead:
 
 	```
 	<copy>
-	replicat initload
-	useridalias hol_tp domain OracleGoldenGate
-	MAP public."Countries", TARGET admin.Countries;
-	MAP public."Cities", TARGET admin.Cities;
-	MAP public."Parkings", TARGET admin.Parkings;
-	MAP public."ParkingData", TARGET admin.ParkingData;
-	MAP public."PaymentData", TARGET admin.PaymentData;
+	MAP public."Countries", TARGET Parking.Countries;
+	MAP public."Cities", TARGET Parking.Cities;
+	MAP public."Parkings", TARGET Parking.Parkings;
+	MAP public."ParkingData", TARGET Parking.ParkingData;
+	MAP public."PaymentData", TARGET Parking.PaymentData;
 	</copy>
 	```
 	
@@ -194,6 +198,6 @@ Don't forget to rate this workshop!  We rely on this feedback to help us improve
 
 ## Acknowledgements
 
-* **Author** - Bilegt Bat-Ochir " Senior Solution Engineer"
-* **Contributors** - John Craig "Technology Strategy Program Manager", Patrick Agreiter "Senior Solution Engineer"
-* **Last Updated By/Date** - Bilegt Bat-Ochir 3/22/2021
+* **Author** - Bilegt Bat-Ochir - Senior Solution Engineer
+* **Contributors** - John Craig - Technology Strategy Program Manager, Patrick Agreiter - Senior Cloud Engineer
+* **Last Updated By/Date** - Bilegt Bat-Ochir 4/15/2021

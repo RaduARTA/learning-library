@@ -1,5 +1,5 @@
 {
-    "workshoptitle": "Deploy an OKE cluster with OCI Service Broker",
+    "workshoptitle": "Develop, debug and deploy Kubernetes applications in a remote OKE cluster",
     "help": "livelabs-help-weblogic_us@oracle.com",
     "tutorials": [
         {
@@ -38,9 +38,19 @@
             "filename": "../../../skaffold/skaffold.md"
         },
         {
-            "title": "Lab 6: Tear down the Environment",
+            "title": "Lab 6: Debugging remote containers",
             "publisheddate": "01/07/2021",
-            "filename": "../../../tear-down/tear-down.md",
+            "filename": "../../../skaffold-debug/skaffold-debug.md"
+        },
+        {
+            "title": "Lab 7: Github Actions for CI/CD",
+            "publisheddate": "01/07/2021",
+            "filename": "../../../ci-cd/ci-cd.md"
+        },
+        {
+            "title": "Lab 8: Tear down the Environment",
+            "publisheddate": "01/07/2021",
+            "filename": "../../../tear-down-devops/tear-down-devops.md",
             "type": "dbcs"
         },
         {

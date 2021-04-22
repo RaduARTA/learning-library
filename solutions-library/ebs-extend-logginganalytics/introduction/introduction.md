@@ -51,10 +51,10 @@ In this lab, you will:
 
 * The IP addresses and SSH path of the instances in your environment
 
+You may now proceed to the next lab.
+
 ### Acknowledgements
 
 * **Author:** Quintin Hill, Cloud Engineering
 * **Contributors:** Kumar Varun, Product Management Logging Analytics
 * **Last Updated By/Date:** Quintin Hill, Cloud Engineering, Mar 2021
-
-#

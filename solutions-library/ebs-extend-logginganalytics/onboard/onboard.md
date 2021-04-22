@@ -4,11 +4,11 @@
 
 This lab will onboard OCI Logging Analytics Service.
 
-**Estimated Lab Time: 30 minutes**
+Estimated Lab Time: 30 minutes
 
 ### Objectives
 
-**In this lab, you will:**
+In this lab, you will:
 * Onboard Logging Analytics (including policies, users, groups, and dynamic groups for using Logging Analytics Service)
 * At the end of this lab you will have Logging Analytics onboarded in your OCI tenancy
 
@@ -87,7 +87,7 @@ Create Logging Analytics Group Logging Analytics Super Admins
 
   e. Add the following rule:
 
-  All {resource.type = 'managementagent', resource.compartment.id = '<Compartment OCID of ebshol_compartment>'}
+  All {resource.type = 'managementagent', resource.compartment.id = 'Compartment OCID of ebshol_compartment'}
 
   Note: Fill in the Compartment OCID with the OCID of the ebshol compartment.
 
@@ -175,6 +175,8 @@ allow service loganalytics to {VNIC_READ} in tenancy
     
 
 This will now complete the Onboarding of Logging Analytics Lab for this workshop.
+
+You may now proceed to the next lab.
 
 ## Acknowledgements
 * **Author** - Quintin Hill, Cloud Engineering, Packaged Applications

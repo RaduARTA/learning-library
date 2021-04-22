@@ -74,7 +74,7 @@ In this step you will execute the `/home/oracle/labs/M104783GC10/setup_oe_tables
 <if type="atp">
 ## **STEP  1**: Login to SQL Developer Web on ADB
 
-There are multiple ways to access your Autonomous Database.  You can access it via sqlplus or by using SQL Developer Web.  To access it via sqlplus, skip to [Step 1B](#STEP1B:LogintoADBusingSQLPlus).
+There are multiple ways to access your Autonomous Database.  You can access it via SQL\*Plus or by using SQL Developer Web.  To access it via SQL\*Plus, skip to [Step 1B](#STEP1B:LogintoADBusingSQLPlus).
 
 1.  If you aren't still logged in, login to your ADB screen by clicking on the Hamburger Menu and selecting the Autonomous Database flavor you selected (ATP, ADW or AJD). Otherwise skip to the next step.
       ![](./images/21c-home-adb.png " ")
@@ -93,7 +93,7 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 ## **STEP  1B**: Login to ADB using SQL Plus
 1. If you aren't logged into the cloud, log back in
 2. Open up Cloud Shell 
-3. Connect to the OE user using sqlplus by entering the commands below.
+3. Connect to the OE user using SQL\*Plus by entering the commands below.
    
     ```
     export TNS_ADMIN=$(pwd)/wallet
@@ -113,11 +113,10 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 	Enter password: <b><i>WElcome123##</i></b>
 	Last Successful login time: Mon Mar 16 2020 11:32:00 +00:00
 	Connected to:
-	SQL>
 	```
 </if>
 <if type="atp">
-For the subsequent sections you will be pasting sql into the SQL worksheet and pressing the green play button or Ctrl+Enter to execute the highlighted statement.  You can also run this in the terminal by logging in to sqlplus as oe/WElcome123##@adb1_high.
+For the subsequent sections you will be pasting sql into the SQL worksheet and pressing the green play button or Ctrl+Enter to execute the highlighted statement.  You can also run this in the terminal by logging in to SQL\*Plus as oe/WElcome123##@adb1_high.
 
 1. Click the admin drop down and scroll down and choose the OE schema.  Note that there are 3 tables that you setup in the previous lab.  Enter the following sql queries to explore set operators.
 </if>
@@ -126,10 +125,9 @@ For the subsequent sections you will be pasting sql into the SQL worksheet and p
 
 	```
 	SQL> <copy>SELECT count(distinct product_id) FROM inventories;</copy>
-
 	<if type="atp">
 	```
-    ![](images/select-product.png)
+    ![](images/step2-inventories.png)
 	</if>
 	<if type="dbcs">
 	COUNT(PRODUCT_ID)
@@ -141,57 +139,58 @@ For the subsequent sections you will be pasting sql into the SQL worksheet and p
 3. Run a count in the `ORDER_ITEMS` table.  Note the difference.
 
 	```
-
 	SQL> <copy>SELECT count(distinct product_id) FROM order_items;</copy>
-
 	<if type="atp">
 	```
-    ![](images/select-product.png)
+    ![](images/step2-order.png)
 	</if>
-	<if type="dbcs">	
+	<if type="dbcs">
 	COUNT(PRODUCT_ID)
 	-----------------
 				185
-	SQL>
+	
 	```
 	</if>
 
-4. How many products are in the inventory that were never ordered? Use the `EXCEPT` operator to retrieve only unique rows returned by the first query but not by the second.
+4. How many products are in the inventory that were never ordered? Use the `EXCEPT` operator to retrieve only unique rows returned by the first query but not by the second. For multi-line statements, select all the lines you want to run before hitting the Run Statement button.
 
 
 	```
-
 	SQL> <copy>SELECT count(*) FROM
 			(SELECT product_id FROM inventories
-			EXCEPT
+				EXCEPT
 			SELECT product_id FROM order_items);</copy>
-
+	<if type="atp">
+	```
+    ![](images/step2-except-inventories.png)
+	</if>
+	<if type="dbcs">	
 	COUNT(*)
 	----------
 		84
-
-	SQL>
-
 	```
+	</if>
 
 5. How many products were ordered that are now missing in the inventory? The order of the queries is relevant for the result.
 
 
 	```
-
 	SQL> <copy>SELECT count(*) FROM
 			(SELECT product_id FROM order_items
-					EXCEPT
+				EXCEPT
 			SELECT product_id FROM inventories);
 		</copy>
-
+	<if type="atp">
+	```
+    ![](images/step2-except-order.png)
+	</if>
+	<if type="dbcs">
 	COUNT(*)
 	----------
     61
 
-	SQL>
-
 	```
+	</if>
 
 ## **STEP  3**: Test the set operator with the `EXCEPT ALL` clause
 
@@ -201,7 +200,11 @@ For the subsequent sections you will be pasting sql into the SQL worksheet and p
 	SQL> <copy>SELECT product_id FROM inventories
 		EXCEPT ALL
 		SELECT product_id FROM order_items;</copy>
-
+	<if type="atp">
+	```
+    ![](images/step3-exceptall.png)
+	</if>
+	<if type="dbcs">
 	PRODUCT_ID
 	----------
 		1729
@@ -221,9 +224,9 @@ For the subsequent sections you will be pasting sql into the SQL worksheet and p
 		3503
 		3503
 		3503
-
 	826 rows selected.
 	```
+	</if>
 
 2. Run the same query but reverse the tables.  
 
@@ -232,16 +235,18 @@ For the subsequent sections you will be pasting sql into the SQL worksheet and p
 		(SELECT product_id FROM inventories
 		EXCEPT ALL
 		SELECT product_id FROM order_items);</copy>
-
+	<if type="atp">
+	```
+    ![](images/step3-exceptreverse.png)
+	</if>
+	<if type="dbcs">
 	COUNT(*)
 	----------
 		826
-
-	SQL>
-
 	```
+	</if>
 
-The result shows all rows in the `INVENTORIES` table that contain products that were never ordered all inventories. This does not mean anything relevant. The use of `ALL` in operators must be appropriate.
+	The result shows all rows in the `INVENTORIES` table that contain products that were never ordered all inventories. This does not mean anything relevant. The use of `ALL` in operators must be appropriate.
 
 ## **STEP  4**: Test the set operator with the `INTERSECT` clause
 
@@ -252,60 +257,71 @@ The result shows all rows in the `INVENTORIES` table that contain products that 
 		(SELECT product_id FROM inventories
 		INTERSECT
 		SELECT product_id FROM order_items);</copy>
-
+	<if type="atp">
+	````
+    ![](images/step4-inventories.png)
+	</if>
+	<if type="dbcs">
 	COUNT(*)
 	----------
 		124
 
 	````
+	</if>
 
 2. Run the sql statement below reversing the intersect clause.
 
 	````
-	SQL>
-	<copy>
-	SELECT count(*) FROM
+	SQL> <copy>SELECT count(*) FROM
 		(SELECT product_id FROM order_items
 		INTERSECT
 		SELECT product_id FROM inventories);
 		</copy>
-
+	<if type="atp">
+	````
+    ![](images/step4-order.png)
+	</if>
+	<if type="dbcs">
 	COUNT(*)
 	----------
 		124
-
-	SQL>
-
 	````
+	</if>
 
 ## **STEP  5**: Test the set operator with the `INTERSECT ALL` clause
 
 1. Would the usage of `ALL` in the operator defined in the query in step 8 mean anything?
 
 	```
-
 	SQL> <copy>SELECT count(*) FROM
 		(SELECT product_id FROM order_items
 		INTERSECT ALL
 		SELECT product_id FROM inventories);</copy>
-
+	<if type="atp">
+	```
+    ![](images/step5-all.png)
+	</if>
+	<if type="dbcs">
 	COUNT(*)
 	----------
 		286
 	```
+	</if>
 
-2. Exit SQL*Plus
+	The result shows all rows in the `INVENTORIES` table that contain products that were ordered. This does not mean that these products were ordered from these warehouses. The query does not mean anything relevant. The use of `ALL` in operators must be appropriate.
+
+<if type="dbcs">
+2. Exit SQL\*Plus.
 
 	```
 	SQL> <copy>exit</copy>
 	```
-
-	The result shows all rows in the `INVENTORIES` table that contain products that were ordered. This does not mean that these products were ordered from these warehouses. The query does not mean anything relevant. The use of `ALL` in operators must be appropriate.
+</if>
 
 You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
 * **Author** - Donna Keesling, Database UA Team
-* **Contributors** -  David Start, Kay Malcolm, Database Product Management
-* **Last Updated By/Date** -  Kay Malcolm, March 2020
+* **Contributors** -  David Start, Kay Malcolm, Didi Han, Database Product Management
+* **Last Updated By/Date** -  Didi Han, April 2021
 

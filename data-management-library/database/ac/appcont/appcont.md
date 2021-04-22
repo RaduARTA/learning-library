@@ -4,7 +4,7 @@
 
 This lab walks you through the use and functioning of Application Continuity.
 
-Estimated Lab Time: 30 Minutes
+Estimated Lab Time: 60 Minutes
 ### Prerequisites
 - An Oracle LiveLabs or Paid Oracle Cloud account
 - Lab: Generate SSH Key
@@ -19,6 +19,7 @@ Estimated Lab Time: 30 Minutes
 **Note:** The initial lab on building the DB System has instructions on how to connect to either node using different methods.
 
 2. Connect to the **oracle** user and download the sample program from the Object Store
+
     ````
     wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/O8AOujhwl1dSTqhfH69f3nkV6TNZWU3KaIF4TZ-XuCaZ5w-xHEQ14ViOVhUXQjPB/n/oradbclouducm/b/LiveLabTemp/o/ACDemo_19c.zip
     ````
@@ -33,18 +34,19 @@ Estimated Lab Time: 30 Minutes
     unzip ACDemo_19c.zip
     Archive:  ACDemo_19c.zip
     creating: acdemo/
-    creating: acdemo/classes/
-    creating: acdemo/lib/
-    creating: acdemo/src/
-    creating: acdemo/win/
+       creating: acdemo/classes/
+       creating: acdemo/lib/
+       creating: acdemo/src/
+       creating: acdemo/win/
     inflating: README.txt
     inflating: SETUP_AC_TEST.sh
     ````
-4. Set the execute bit **+x** on the SETUP_AC_TEST.sh script
+4. Set the execute bit **+x** on the SETUP\_AC\_TEST.sh script
+
     ````
     chmod +x SETUP_AC_TEST.sh
     ````
-5. Run the script **SETUP_AC_TEST.sh**. You will be prompted for INPUTS. If a default value is shown, press **ENTER** to accept
+5. Run the script **SETUP\_AC\_TEST.sh**. You will be prompted for INPUTS. If a default value is shown, press **ENTER** to accept
 
     ````
     <copy>
@@ -56,9 +58,9 @@ Estimated Lab Time: 30 Minutes
     Choose a name for your service. If this installation is not on the database tier many of the inputs will not have default values.
 
     On completion three services will be created
-    **Note:** If services of the same name existed prior to running this script these services will have their original attributes - SETUP_AC_TEST does not attempt to modify them
+    **Note:** If services of the same name existed prior to running this script these services will have their original attributes - SETUP\_AC\_TEST does not attempt to modify them
 
-   ![](./images/setup_services_list.png " ")
+   ![](./images/setup_service_list.png " ")
 
 6. Make the **run** scripts executable
 
@@ -83,7 +85,7 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
     ````
     You should see at least 3 services: **noac**, **tac_service**, and one you named yourself.
 
-   ![](./images/setup_services_list.png " ")
+   ![](./images/setup_service_list.png " ")
 
     Examine the service characteristics (replacing the service name in the command below for each service)
 
@@ -94,27 +96,30 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
     ````
    ![](./images/noac_config.png " ")
 
-   The attributes **commit_outcome**, **failovertype**, and **failover_restore** are those that set whether AC is enabled or not. For the \"noac\" service AC is not enabled as commit_outcome is false and failovertype is NONE.
+   The attributes **commit\_outcome**, **failovertype**, and **failover\_restore** are those that set whether AC is enabled or not. For the \"noac\" service AC is not enabled as commit_outcome is false and failovertype is NONE.
 
    For the service enabled for TAC, **tac_service**
-   ````
-   srvctl config service -d  `srvctl config database` -s tac_service
-   ````
+
+    ````
+    srvctl config service -d  `srvctl config database` -s tac_service
+    ````
+
       ![](./images/tac_config.png " ")
 
-   To enable TAC **commit_outcome** is TRUE, **failovertype** is set to AUTO, and **failover_restore** is AUTO
+   To enable TAC **commit\_outcome** is TRUE, **failovertype** is set to AUTO, and **failover\_restore** is AUTO
 
-   **Note:** The attributes failoverretry and failoverdelay are not required when RETRY_COUNT and RETRY_DELAY are set in the connect string\/URL as recommended
+   **Note:** The attributes failoverretry and failoverdelay are not required when RETRY\_COUNT and RETRY\_DELAY are set in the connect string\/URL as recommended
 
-   Examine the setting for the AC-enabled service you created. You should see that commit_outcome is TRUE, failovertype is TRANSACTION and failover_restore is LEVEL1.
+   Examine the setting for the AC-enabled service you created. You should see that commit\_outcome is TRUE, failovertype is TRANSACTION and failover\_restore is LEVEL1.
 
 2. The sample program described
    The sample program is called **acdemo**
    There is an **acdemo/** directory in the *oracle* users home directory (if you unpacked the ZIP file here). The acdemo/ directory contains:
 
+    ````
       classes/   
           acdemo/    <--- Compiled versions of the acdemo application classes
-      lib/           <--- The JDBC libraries and the packaged acdemo classes in *acdemo.jar*
+      lib/           <--- The JDBC libraries and the packaged acdemo classes in acdemo.jar
       src/
          acdemo/
             ACDemo.java             <-- main program file
@@ -130,7 +135,7 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
       runtacreplay                  <--- shell script to start ACDemo using ac_replay.properties file
       kill_session.sh               <--- shell script to kill database sessions connected to a named service
       build.xml                     <--- A buildfile for ANT (ANT not installed on these systems)
-
+    ````
 
 ## **STEP 3:**  NO Replay
 
@@ -138,7 +143,7 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
 
    A key tenet of Application Continuity is that no application changes are required. We manage this sample application with a property file. We use a SHELL script to set the environment and select the property file that will produce a certain behaviour.
 
-   Examine the ac_noreplay.properties file to see that we are using a pooled datasource *oracle.jdbc.pool.OracleDataSource* but we have disabled FAN, *fastConnectionFailover=FALSE* and connection tests *validateConnectionOnBorrow=FALSE*. The URL uses the recommended format and connects to the service **noac**, which has no AC attributes set.
+   Examine the ac\_noreplay.properties file to see that we are using a pooled datasource *oracle.jdbc.pool.OracleDataSource* but we have disabled FAN, *fastConnectionFailover=FALSE* and connection tests *validateConnectionOnBorrow=FALSE*. The URL uses the recommended format and connects to the service **noac**, which has no AC attributes set.
 
     ![](./images/noreplay_properties.png " ")   
 
@@ -157,9 +162,10 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
     ````
     <copy>
     srvctl status service -d `srvctl config database` -s noac
-    </copy>
     ````    
+
     This will return an instance name, for example:
+
     ````
     $ srvctl status service -d `srvctl config database` -s noac
         Service noac is running on instance(s) racHPNUY2
@@ -168,16 +174,16 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
     Connect to the node containing that instance
 
     ````
-    [oracle@lvracdb-s01-2021-03-30-2046032 acdemo]$ srvctl status service -d `srvctl config database` -s noac
+    $ srvctl status service -d `srvctl config database` -s noac
          Service noac is running on instance(s) racHPNUY2
 
-    [oracle@lvracdb-s01-2021-03-30-2046032 acdemo]$ ps -ef | grep smon
+    $ ps -ef | grep ora_smon
          root     39708     1  1 Mar30 ?        00:08:33 /u01/app/19.0.0.0/grid/bin/osysmond.bin
          grid     45180     1  0 Mar30 ?        00:00:00 asm_smon_+ASM2
          oracle   71378 75971  0 06:26 pts/0    00:00:00 grep --color=auto smon
          oracle   82842     1  0 Mar30 ?        00:00:04 ora_smon_racHPNUY2
     ````
-    Get the process number of the ora_smon_<yourDBName><correctInstanceID> process - in this example **82842**
+    Get the process number of the ora\_smon\_<yourDBName><correctInstanceID> process - in this example **82842**
     Pass this process id to a kill -9 command
 
     ````
@@ -212,10 +218,8 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
     There is also a script named kill_sessions.sh in the acdemo/ directory that can be used to forcibly kill the database sessions. This script takes the service name as an argument (as it needs to connect to the same instance as the application in order to identify the sessions)
 
     ````
-    <copy>
     cd /home/oracle/acdemo
     ./kill_session.sh noac.pub.racdblab.oraclevcn.com
-    </copy>
     ````
     ![](./images/noreplay_errors_2.png " ")  
 
@@ -223,33 +227,37 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
 
 1.  Examine the ac_replay.properties file to see that we are using a replay datasource *oracle.jdbc.replay.OracleDataSourceImpl* and we have enabled FAN, *fastConnectionFailover=TRUE* and connection tests *validateConnectionOnBorrow=TRUE*. The URL uses the recommended format and connects to the service you created previously, which has AC attributes set.
 
- ![](./images/replay_properties.png " ")   
+    ![](./images/replay_properties.png " ")   
 
- ````
- cd /home/oracle/acdemo
- ./runreplay
- ````
- The application will start, create a connection pool, and begin issuing transactions against the database using an AC-enabled service.
- Both FAN and connection tests are enabled
+    ````
+    cd /home/oracle/acdemo
+    ./runreplay
+    ````
+    The application will start, create a connection pool, and begin issuing transactions against the database using an AC-enabled service.
+    Both FAN and connection tests are enabled
 
- ![](./images/ac_run.png " ")  
+    ![](./images/ac_run.png " ")  
 
 **Note:** ONS is auto-configured. The "ONS Configuration" heading in the banner is only populated if ONS is manually configured [which is not recommended]
 
 2. Crash the instance by killing SMON
 
     Substitute your AC service in the command below (in this example my AC-enabled service is named ac_service)
+
     ````
     srvctl status service -d `srvctl config database` -s ac_service
     ps -ef | grep ora_smon
     kill -9 mySMONPID
+    ````
+    For example:
 
-    [oracle@lvracdb-s01-2021-03-30-2046032 acdemo]$ srvctl status service -d `srvctl config database` -s ac_service
-                     Service ac_service is running on instance(s) racHPNUY2
-    [oracle@lvracdb-s01-2021-03-30-2046032 acdemo]$ ps -ef | grep ora_smon
-                oracle   68325     1  0 07:52 ?        00:00:00 ora_smon_racHPNUY2
-                oracle   99444 81136  0 08:19 pts/1    00:00:00 grep --color=auto ora_smon
-    [oracle@lvracdb-s01-2021-03-30-2046032 acdemo]$ kill -9 68325
+    ````
+    $ srvctl status service -d `srvctl config database` -s ac_service
+             Service ac_service is running on instance(s) racHPNUY2
+    $ ps -ef | grep ora_smon
+          oracle   68325     1  0 07:52 ?        00:00:00 ora_smon_racHPNUY2
+          oracle   99444 81136  0 08:19 pts/1    00:00:00 grep --color=auto ora_smon
+    $ kill -9 68325
     ````
 
     ![](./images/ac_failover.png " ")
@@ -277,11 +285,11 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
     ````
     You should notice that there is a response time increase as services are failed over and connections re-established. But no errors.
 
-    ## **STEP 5:**  Transparent Application Continuity
+## **STEP 5:**  Transparent Application Continuity
 
-    1.  Examine the tac_replay.properties file to see that we are using a replay datasource *oracle.jdbc.replay.OracleDataSourceImpl* and we have enabled FAN, *fastConnectionFailover=TRUE* and connection tests *validateConnectionOnBorrow=TRUE*. The URL uses the recommended format and connects to the service you created previously, which has AC attributes set.
+1.  Examine the tac_replay.properties file to see that we are using a replay datasource *oracle.jdbc.replay.OracleDataSourceImpl* and we have enabled FAN, *fastConnectionFailover=TRUE* and connection tests *validateConnectionOnBorrow=TRUE*. The URL uses the recommended format and connects to the service you created previously, which has AC attributes set.
 
-     ![](./images/tac_properties.png " ")   
+    ![](./images/tac_properties.png " ")   
 
      ````
      cd /home/oracle/acdemo
@@ -294,59 +302,61 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
 
     **Note:** ONS is auto-configured. The "ONS Configuration" heading in the banner is only populated if ONS is manually configured [which is not recommended]
 
-    2. Crash the instance by killing SMON
+2. Crash the instance by killing SMON
 
-        Substitute your AC service in the command below (in this example my AC-enabled service is named ac_service)
-        ````
-        srvctl status service -d `srvctl config database` -s ac_service
-        ps -ef | grep ora_smon
-        kill -9 mySMONPID
+    Substitute your AC service in the command below (in this example my AC-enabled service is named ac_service)
+    ````
+    srvctl status service -d `srvctl config database` -s ac_service
+    ps -ef | grep ora_smon
+    kill -9 mySMONPID
+    ````
+    For example:
 
-        [oracle@lvracdb-s01-2021-03-30-2046032 acdemo]$ srvctl status service -d `srvctl config database` -s tac_service
-                         Service ac_service is running on instance(s) racHPNUY2
-        [oracle@lvracdb-s01-2021-03-30-2046032 acdemo]$ ps -ef | grep ora_smon
-                    oracle   68325     1  0 07:52 ?        00:00:00 ora_smon_racHPNUY2
-                    oracle   99444 81136  0 08:19 pts/1    00:00:00 grep --color=auto ora_smon
-        [oracle@lvracdb-s01-2021-03-30-2046032 acdemo]$ kill -9 68325
-        ````
+    ````
+    $ srvctl status service -d `srvctl config database` -s tac_service
+                        Service ac_service is running on instance(s) racHPNUY2
 
-        ![](./images/tac_failover.png " ")
+    $ ps -ef | grep ora_smon
+                oracle   68325     1  0 07:52 ?        00:00:00 ora_smon_racHPNUY2
+                oracle   99444 81136  0 08:19 pts/1    00:00:00 grep --color=auto ora_smon
+    $ kill -9 68325
+    ````
 
-        No errors occur.
-        Transparent Application Continuity traps the error(s), re-establishes connections at a surviving instance, and replays any uncommitted transactions.
-        We do not progress in to any of the application's error handling routines
+    ![](./images/tac_failover.png " ")
 
-        ````
-        $ ./runtacreplay
-        ######################################################
-        Connecting to jdbc:oracle:thin:@(DESCRIPTION=(CONNECT_TIMEOUT=90)(RETRY_COUNT=50)(RETRY_DELAY=3)(TRANSPORT_CONNECT_TIMEOUT=3)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=lvracdb-s01-2021-03-30-204603-scan.pub.racdblab.oraclevcn.com)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=tac_service.pub.racdblab.oraclevcn.com)))
-        # of Threads             : 10
-        UCP pool size            : 20
-        FCF Enabled:  true
-        VCoB Enabled: true
-        ONS Configuration:  null
-        Thread think time        : 50 ms
-        ######################################################
+    No errors occur.
+    Transparent Application Continuity traps the error(s), re-establishes connections at a surviving instance, and replays any uncommitted transactions.
+    We do not progress in to any of the application's error handling routines
 
-        Starting the pool now... (please wait)
-        Pool is started in 4403ms
-        6 borrowed, 2 pending, 0ms getConnection wait, TotalBorrowed 645, avg response time from db 15ms
-        0 borrowed, 0 pending, 0ms getConnection wait, TotalBorrowed 1442, avg response time from db 9ms
-        5 borrowed, 1 pending, 0ms getConnection wait, TotalBorrowed 2240, avg response time from db 9ms
-        1 borrowed, 0 pending, 1ms getConnection wait, TotalBorrowed 2809, avg response time from db 29ms
-        1 borrowed, 0 pending, 1ms getConnection wait, TotalBorrowed 3492, avg response time from db 18ms
-        1 borrowed, 0 pending, 0ms getConnection wait, TotalBorrowed 4294, avg response time from db 9ms
-        2 borrowed, 0 pending, 0ms getConnection wait, TotalBorrowed 5126, avg response time from db 7ms
-        ````
-        You should notice that there is a response time increase as services are failed over and connections re-established. But no errors.
+    ````
+    $ ./runtacreplay
+    ######################################################
+    Connecting to jdbc:oracle:thin:@(DESCRIPTION=(CONNECT_TIMEOUT=90)(RETRY_COUNT=50)(RETRY_DELAY=3)(TRANSPORT_CONNECT_TIMEOUT=3)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=lvracdb-s01-2021-03-30-204603-scan.pub.racdblab.oraclevcn.com)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=tac_service.pub.racdblab.oraclevcn.com)))
+    # of Threads             : 10
+    UCP pool size            : 20
+    FCF Enabled:  true
+    VCoB Enabled: true
+    ONS Configuration:  null
+    Thread think time        : 50 ms
+    ######################################################
+
+    Starting the pool now... (please wait)
+    Pool is started in 4403ms
+    6 borrowed, 2 pending, 0ms getConnection wait, TotalBorrowed 645, avg response time from db 15ms
+    0 borrowed, 0 pending, 0ms getConnection wait, TotalBorrowed 1442, avg response time from db 9ms
+    5 borrowed, 1 pending, 0ms getConnection wait, TotalBorrowed 2240, avg response time from db 9ms
+    1 borrowed, 0 pending, 1ms getConnection wait, TotalBorrowed 2809, avg response time from db 29ms
+    1 borrowed, 0 pending, 1ms getConnection wait, TotalBorrowed 3492, avg response time from db 18ms
+    1 borrowed, 0 pending, 0ms getConnection wait, TotalBorrowed 4294, avg response time from db 9ms
+    2 borrowed, 0 pending, 0ms getConnection wait, TotalBorrowed 5126, avg response time from db 7ms
+    ````
+    You should notice that there is a response time increase as services are failed over and connections re-established. But no errors.
 
 3. Run the kill_session.sh script
 
     ````
-    <copy>
     cd /home/oracle/acdemo
     ./kill_session.sh tac_service.pub.racdblab.oraclevcn.com
-    </copy>
     ````
     ````
     SQL> SQL>
@@ -372,8 +382,9 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
 
 5. Connect to the database with SQL\*Plus as the HR user over the TAC-enabled service
     ````
-    sqlplus hr/W3lc0m3#W3lc0m3#@"(DESCRIPTION=(CONNECT_TIMEOUT=90)(RETRY_COUNT=50)(RETRY_DELAY=3)(TRANSPORT_CONNECT_TIMEOUT=3)(ADDRESS_LISTADDRESS=(PROTOCOL=tcp)(HOST=lvracdb-s01-2021-03-30-204603-scan.pub.racdblab.oraclevcn.com)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=tac_service.pub.racdblab.oraclevcn.com)))"
-    ````        
+    sqlplus hr/W3lc0m3#W3lc0m3#@"(DESCRIPTION=(CONNECT_TIMEOUT=90)(RETRY_COUNT=50)(RETRY_DELAY=3)(TRANSPORT_CONNECT_TIMEOUT=3)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=lvracdb-s01-2021-03-30-204603-scan.pub.racdblab.oraclevcn.com)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=tac_service.pub.racdblab.oraclevcn.com)))"
+    ````
+
     Update a row in the table EMP4AC.
     For example:
 
@@ -421,7 +432,7 @@ Application Continuity (whether AC or TAC) is enabled by setting attributes on t
     SQL>
     ````
 
-Try the same procedure using the AC-enabled service
+    Try the same procedure using the AC-enabled service
 
     ````
     SQL> select empno, ename  from emp4ac where rownum < 10;
@@ -463,7 +474,7 @@ Try the same procedure using the AC-enabled service
     ORA-41409: cannot replay committed transaction; failover cannot continue
     ````
 
-A COMMIT signals to application continuity to disable replay until the next request. For AC, this is typically a getConnection() call (from a pool). SQL*Plus is not pooled. TAC however, enables protection on the next call - hence protection continues.
+    A COMMIT signals to application continuity to disable replay until the next request. For AC, this is typically a getConnection() call (from a pool). SQL*Plus is not pooled. TAC however, enables protection on the next call - hence protection continues.
 
 
 You may now *proceed to the next lab*.  
@@ -501,9 +512,4 @@ You may now *proceed to the next lab*.
 ## Acknowledgements
 * **Authors** - Troy Anthony
 * **Contributors** - Kay Malcolm
-* **Last Updated By/Date** - Troy Anthony, March 2021
-
-## Need Help?
-
-
-Please submit feedback or ask for help by sending an email to livelabs-help-db_us@oracle.com. Please make sure to include your workshop name and lab name.  You can also include screenshots and attach files.
+* **Last Updated By/Date** - Troy Anthony, April 2021

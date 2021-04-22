@@ -5,7 +5,7 @@
 
 In this lab you will create a database user with the appropriate roles and privileges required for using the graph capabilities of the Autonomous Database.
 
-**Note: While this lab uses ADW, the steps are identical for an ATP database.**
+**Note: While this lab uses Autonomous Data Warehouse, the steps are identical for creating and connecting to an Autonomous Transaction Processing database.**
 
 Estimated Lab Time: 5 minutes. 
 
@@ -17,17 +17,17 @@ Learn how to
 
 ### Prerequisites
 
-- The following lab requires an ADB-Shared (ADW/ATP) account. 
+- The following lab requires an Autonomous Data Warehouse - Shared Infrastructure or Autonomous Transaction Processing - Shared Infrastructure account. 
 
-## **STEP 1**: Connect to the Database Actions (aka SQL Developer Web) for your ADB instance
+## **STEP 1**: Connect to the Database Actions (aka SQL Developer Web) for your Auronomous Database instance
 
-1. Open the service detail page for your ADB instance in the OCI console. 
+1. Open the service detail page for your Autonomous Database instance in the OCI console. 
 
 2. Click on the Tools tab and then the Database Actions link to open it. Or click on the Service Console link and then the Development link and open Database Actions (or SQL DeveloperWeb).
 
 ## **STEP 2**: Create the graph-enabled user
 
-1. Login as the ADMIN user for your ADB instance. 
+1. Login as the ADMIN user for your Autonomous Database instance. 
 
     ![](./images/login.png " ")
 
@@ -39,10 +39,11 @@ Learn how to
 
     ![](./images/create-user-icon.png " ")
 
-4. Enter the required details, i.e. user name and passwrod. Turn on the **Graph Enable** radio button.
+4. Enter the required details, i.e. user name and password. Turn on the **Graph Enable** radio button. And select a quota to allocate on the `DATA` tablespace.
    
     ![](./images/enter-user-info.png " ")
 
+**Note: Please do not Graph Enable the ADMIN user and do not login to Graph Studio as the ADMIN user.**
 
 5. Click the `Create User` button at the bottom of the panel to create the user with the specified credentials.
    
@@ -52,9 +53,7 @@ Learn how to
 
    ![](./images/user-created.png " ")   
 
-   **Note: As of 10th February a regression in database actions Create User caused issues when Graph-enabling a user from the above menu.   
-   The workaround is to click on Edit user (the three dots menu) and then click Graph Enable again.   
-   Another option is to just enter the optional sql commands listed below when logged in as ADMIN.**
+   **Note: Another option is to just enter the optional sql commands listed below when logged in as ADMIN.**
    
 6. Now allocate a desired table space quota to the newly created user. Open the SQL page and issue the alter command.  
    For example, 
@@ -90,5 +89,5 @@ Please **proceed to the next lab** to learn how to create and analyze graphs in 
 
 ## Acknowledgements
 * **Author** - Jayant Sharma, Product Development
-* **Last Updated By/Date** - Jayant Sharma, Nov 2020
+* **Last Updated By/Date** - Jayant Sharma, April 2021
   

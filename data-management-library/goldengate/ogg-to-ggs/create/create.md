@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This lab walks you through the steps to download the root certificate from Oracle Cloud Infrastructure and upload it to Oracle GoldenGate.
+This lab walks you through the steps to download the root certificate from Oracle Cloud Infrastructure and add it to the Oracle GoldenGate wallet.
 
 Estimated Lab Time: 5 minutes
 
@@ -12,7 +12,7 @@ Estimated Lab Time: 5 minutes
 In order to complete the steps in this lab successfully, you must have the following Environment Variables set up:
 * OGG_HOME set to your Oracle GoldenGate install directory
 * PATH set to $PATH:$OGG_HOME/bin
-* JAVA_HOME set to the location of your jre
+* JAVA_HOME set to the location of your JRE
 
 You must also know the Oracle GoldenGate wallet password.
 
@@ -26,7 +26,9 @@ In this lab, you will:
 
 ## **STEP 1**: Using Chrome to Download the Root Certificate
 
-1. Log in to the **Oracle Cloud Infrastructure Console** with your username and password. See [Signing in to the Console](https://docs.cloud.oracle.com/en-us/iaas/Content/GSG/Tasks/signingin.htm) in the *Oracle Cloud Infrastructure* documentation.
+The following instructions show you how to download the Root Certificate using a Chrome web browser.
+
+1.  Log in to the **Oracle Cloud Infrastructure Console** with your username and password. See [Signing in to the Console](https://docs.cloud.oracle.com/en-us/iaas/Content/GSG/Tasks/signingin.htm) in the *Oracle Cloud Infrastructure* documentation.
 
 2.  After you log in to the Console, open the navigation menu, and then under **Database Related Services**, select **GoldenGate**.
 
@@ -36,13 +38,13 @@ In this lab, you will:
 
     ![GoldenGate Deployments page](images/01-01-02a.png "Deployments page")
 
-3.  In your Chrome browser address bar, click the padlock icon, and then click **Certficiate (Verified)**.
+3.  In your Chrome browser address bar, click the padlock icon, and then click **Certificate (Verified)**.
 
     ![Certificate](images/01-04-certificate.png)
 
 4.  In the Certificate window, click **Certification Path**, select **DigiCert**, and then click **View Certificate**.
 
-    Another Certificate window opens, now displaying the details for the root DigiCert certificate.
+    Another Certificate window opens, displaying the details for the root DigiCert certificate.
 
     ![DigiCert Root](images/01-04-digicert.png)
 
@@ -70,7 +72,7 @@ A Certificate Export Wizard dialog displays **The export was successful**. You c
 
 3. Under the ssl directory, change directories to your deployment directory.
 
-4. Run orapki.
+4. Run orapki to add the certificate to the wallet.
 
    ```
    <copy>orapki wallet add -wallet ./ -trusted_cert -cert ./DigiCertRoot.cer</copy>
@@ -86,17 +88,19 @@ A Certificate Export Wizard dialog displays **The export was successful**. You c
 
 ## **STEP 3:** Restart the Oracle GoldenGate Distribution and Receiver Servers
 
+Stop and start the Distribution and Receiver Servers to pick up the changes made to the wallet.
+
 1. Open the Oracle GoldenGate Service Manager in your web browser.
 
-2. In the list of Services, locate the Distribution Server and then select Stop from its **Action** menu.
+2. In the list of Services, locate the Distribution Server and then select **Stop** from its **Action** menu.
 
 3. Repeat step 2 for the Receiver Server.
 
-4. When the Status is Stopped for both the Distribution and Receiver Servers, you can restart them by selecting **Start** in their respective **Action** menus.
+4. When the Status is **Stopped** for both the Distribution and Receiver Servers, you can restart them by selecting **Start** in their respective **Action** menus.
 
 ## **STEP 4:** Add a Credential for Oracle GoldenGate to Connect to OCI GoldenGate
 
-1. Launch the OCI GoldenGate Deployment Console, sign in, and then navigate to the Administration Server Administrator page.
+1. Launch the OCI GoldenGate Deployment Console, sign in, and then use the navigation menu to access the Administration Server's Administrator page.
 
 2. Click **Add User** and create a user account that Oracle GoldenGate will use to connect to OCI GoldenGate. For example, name the user **ggsnet** and assign the user the Operator role.
 
@@ -106,7 +110,7 @@ A Certificate Export Wizard dialog displays **The export was successful**. You c
 
    * For **Credential Domain**, enter a name to distinguish this connection, such as **GGSNetwork**.
    * For **Credential Alias**,  enter a name
-   * For **User ID**, enter the user name of the user you created in step 2 (ggsnet).
+   * For **User ID**, enter the user name of the user you created in step 2. For example, **ggsnet**.
    * For **Password**, enter the password associated to the user entered for User ID.
    * For **Verify Password**, re-enter the password for verification purposes.
 
@@ -118,9 +122,6 @@ In this lab, you created a trusted connection between Oracle GoldenGate and OCI 
 ## Acknowledgements
 * **Author** - Jenny Chan, Consulting User Assistance Developer, Database User Assistance
 * **Contributors** -  Werner He, Database Product Management
-* **Last Updated By/Date** - March 2021
+* **Last Updated By/Date** - April 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

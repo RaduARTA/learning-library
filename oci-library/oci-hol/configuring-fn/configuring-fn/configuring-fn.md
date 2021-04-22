@@ -242,7 +242,13 @@ Estimated Time: 75 minutes
 
     Save the file.
 
-7. Install the docker-engine:
+7. Enable Oracle Linux Development Packages repository
+
+    ```
+    <copy>sudo yum-config-manager --enable ol7_developer</copy>
+    ```
+
+8. Install the docker-engine:
 
     ```
     <copy>sudo yum install docker-engine -y</copy>
@@ -250,7 +256,7 @@ Estimated Time: 75 minutes
 
     ![](images/docker-installed.png)
 
-8. Enter the following command to enable Docker.
+9. Enter the following command to enable Docker.
 
     ```
     <copy>
@@ -260,7 +266,7 @@ Estimated Time: 75 minutes
 
     ![](images/Function_013.png)
 
-9. Enter the following command to start Docker.
+10. Enter the following command to start Docker.
 
     ```
     <copy>
@@ -270,7 +276,7 @@ Estimated Time: 75 minutes
 
     ![](images/Function_014.png)
 
-10. Enable the opc user to use Docker with the following command.
+11. Enable the opc user to use Docker with the following command.
 
     ```
     <copy>
@@ -280,7 +286,7 @@ Estimated Time: 75 minutes
 
     ![](images/Function_015.png)
 
-11. Docker is installed and the opc user is enabled to use Docker. Logout and log back in to the compute instance. Enter the following command.
+12. Docker is installed and the opc user is enabled to use Docker. Logout and log back in to the compute instance. Enter the following command.
 
     ```
     <copy>

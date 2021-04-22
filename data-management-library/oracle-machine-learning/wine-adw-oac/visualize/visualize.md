@@ -4,6 +4,8 @@
 
 *Describe the lab in one or two sentences, for example:* This lab walks you through the steps to ...
 
+This lab walks you through the steps to ...
+
 Estimated Lab Time: n minutes
 
 ### About Product/Technology
@@ -26,6 +28,60 @@ In this lab, you will:
 * Item no 2 with url - [URL Text](https://www.oracle.com).
 
 *This is the "fold" - below items are collapsed by default*
+
+
+## **STEP 1**: Login to Oracle Analytics Cloud
+
+
+## **STEP 2**: 
+
+
+
+## **STEP 1**: Create Visualizations using your data sets
+
+1. Create a new project by clicking **Create Project**.
+
+    ![Data Set - Create project](./images/lab300_21.png)
+
+    A new screen with a **white canvas** is opened using the **SH&#95;SALES Data Set** you created.
+
+    ![OAC - White canvas](./images/lab300_22.png)
+
+    Before drowning into details, let us give you a quick **explanation** of the different parts of this screen. This will help you to easily follow the next steps.
+
+    An **Oracle Analytics Project** consist of **three main parts** (you can see them at the top right part of the screen):
+
+    ![OAC Navigation](./images/lab300_23.png)
+
+    - **Prepare**: Here is where you configure your data. You get a preview of each dataset on the project. You enrich it by adding columns, hiding or renaming the available ones. You can also define joins between datasets here
+
+    - **Visualize**: Here is where you explore and Analyze the data. You can create several canvases to hold the different visualizations you define
+
+    - **Narrate**: Here is where you create a more presentation-oriented view of the analysis you created. This tab allows you to choose which insights to show and add comments and descriptions. It helps to understand your analysis journey and focus on showing the results
+
+    During this workshop, you will use the **Prepare** and **Visualize** tabs mainly.
+
+    You have already seen the **Prepare** screen on previous steps. The **Visualize** screen is this one:
+
+    ![OAC - Canvas explanation](./images/lab300_24.png)
+
+    Main areas to note here are:
+
+    - **Explorer**: Contains all fields from your datasets to be used in the project
+
+    - **Properties box**: Allows you to define the properties and parameters of the selected object. If it is a column it will be highlighted in blue (in the screen PROD_ID in the Explorer menu is selected), if it is a graphic from the canvas it will have a thin blue borderline around it
+
+    - **Graph Definition**: Contains definition of the selected Visualization, which fields to use and where (Axis, Filters, Trellis Groups...)
+
+    - **Canvas**: Your play area. You can place your visuals here. You can also create more Canvases and copy/move visuals around
+
+2. Now that you know a bit your way around in the **Project**, you can continue with the workshop.
+
+    **Remember** that you just added the new dataset from the **SH&#95;SALES** table.
+
+    All the number-type columns from this table are treated as **NUMBER** by default. You can check the information on the **Properties** section of each table column under the Data Type section.
+
+    ![SH-SALES Properties](./images/lab300_25.png)
 
 ## **STEP 1**: title
 

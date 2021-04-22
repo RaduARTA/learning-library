@@ -21,24 +21,35 @@ Estimated Lab Time: 10 minutes
 
 In this lab you will:
 
-- Git clone the demo repository
+- Copy the demo template to your own Github
 - Review the demo project structure
 - Provision the required users with *`terraform`*
 
-## **STEP 1:** Clone the demo repository
+## **STEP 1:** Use the template
 
-1. To clone the demo repository, run the git command in a folder of your choice:
+1. To use the template, click **Use this Template**
+
+    ![](./images/template.png)
+
+2. Choose a name
+
+3. **For security reasons, we recommend always making your repo PRIVATE**
+
+4. Click **Create repository from template**.
+
+5. Then under the **Code** button, copy the git URL and clone your repository locally with:
 
     ```bash
     <copy>
+    git clone <your_git_url>
     </copy>
     ```
 
-2. Get into the folder:
+6. Get into the folder:
     
     ```
     <copy>
-    cd ./k8s-boilerplate
+    cd ./<name of your repo>
     </copy>
     ```
 
@@ -151,7 +162,8 @@ In this lab you will:
     Provide the *`cluster_id`* of the cluster created in lab 2, which was output in the terraform output
 
     ```yaml
-    tenancy_ocid = "ocid1.tenancy.oc1..
+    tenancy_ocid = "ocid1.tenancy.oc1.."
+    compartment_ocid = "ocid1.compartment.oc1.."
     region           = "us-ashburn-1"
     cluster_id = "ocid1.cluster...."
 
@@ -220,39 +232,21 @@ In this lab you will:
 
     And answer *`yes`* at the prompt
 
-3. Make note of the following output from the terraform:
+3. The terraform outputs the following useful info:
 
     - The *`OCIR_pusher_username`* and *`token`* required to login to the OCIR image registry
 
 4. You should also find the following artifacts in the folder for the CI user:
 
-    - A *`cluster_admin_user_xxxx_rsa_private_key.pem`* file for the CI user to access the cluster via the OCI CLI
+    - A *`cluster_admin_user_xxxx_rsa_private_key.pem`* file for a CI user to access the cluster via the OCI CLI
     - A corresponding *`cluster_admin_user_xxxx_oci_config.txt`* file
     - A *`kubeconfig`* file
 
-## **STEP 6:** Docker login and setup credentials
+## **STEP 6:** Docker login 
 
-1. Check that you can login to the OCIR Image Registry
+1. The terraform creates a `creds.env` file on the root of the project.
 
-    You'll need your tenancy namespace, which can be obtained with
-
-    ```bash
-    <copy>
-    oci os ns get
-    </copy>
-    ```
-
-    Login with:
-
-    ```bash
-    docker login ${TF_REGION}.ocir.io/<tenancy_namespace>
-    ```
-
-    At the prompt, supply the *`username`* and *`password`* as output by the terraform for the *`OCIR_pusher_user.username`* and *`OCIR_pusher_user.token`*
-
-2. Now you confirmed the credentials are working, we'll populate a credential file for use by the tooling
-
-3. Step out of the *`terraform`* folder and back to the root of the demo repository:
+2. Go back to the root folder:
 
     ```bash
     <copy>
@@ -260,27 +254,17 @@ In this lab you will:
     </copy>
     ```
 
-4. Create a file called *`creds.env`*
+4. Login to the Docker OCIR repository
+
+    You can do so with the helper function 
 
     ```bash
     <copy>
-    nano creds.env
+    make repo-login
     </copy>
     ```
 
-5. Populate the following information:
-
-    ```bash
-    <copy>
-    TENANCY_NAMESPACE=
-    DOCKER_USERNAME=
-    DOCKER_PASSWORD=
-    </copy>
-    ```
-
-    *Note: DO NOT use quotes for these variables*
-
-6. Exit the editor with `CTRL+X` and then *`y`*
+    which uses the `creds.env` and `gobal.env` files and runs the `docker login <region>.ocir.io/<tenancy_namespace>` command with the credentials saved in `creds.env`
 
 
 You may proceed to the next lab.

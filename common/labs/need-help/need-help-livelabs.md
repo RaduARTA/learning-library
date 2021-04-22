@@ -7,12 +7,12 @@ If you still find yourself stuck or would like to report an issue with the works
 
 ![](images/help-button2.png)
 
-For more about getting support using our email, click [here](#HowToFormatYourSupportEmailRequest).
+For more about getting support using our email, click [here](#HowtoFormatYourSupportEmailRequest).
 
 ### Common Issues Table of Contents
   - [Can't Login to Oracle Cloud](#CantLogintoOracleCloud)
-  - [Can't Create An Oracle Database? Nothing In Your Compartment?](#CantCreateAnOracleDatabase?NothingInYourCompartment?)
-  - [Connectivity Issues? Unable To Upload Data or Connect To The database?](#ConnectivityIssues?UnableToUploadDataorConnectToThedatabase?)
+  - [Can't Create An Oracle Database? Nothing In Your Compartment?](#CantCreateanOracleDatabase?NothinginYourCompartment?)
+  - [Connectivity Issues? Unable To Upload Data or Connect To The database?](#ConnectivityIssues?UnabletoUploadDataorConnecttotheDatabase?)
 
 ### **Rate This Workshop**
 When you are finished please don't forget to rate this workshop!  We rely on this feedback to help us improve and refine our LiveLabs catalog.  Follow the steps to submit your rating. 

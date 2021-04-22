@@ -30,7 +30,7 @@ The first facility that we will look at for monitoring your autonomous database 
 
 1. If you are not logged in to Oracle Cloud Console, log in and select Autonomous Data Warehouse from the hamburger menu and navigate into your ADW Finance Mart instance.
 
-    ![](images/select-adw-from-menu.jpg " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![](images/select-adw-finance-mart.jpg " ")
 
@@ -170,5 +170,4 @@ Click [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-clo
 ## **Acknowledgements**
 
 - **Author** - Richard Green, DB Docs Team
-- **Last Updated By/Date** - Arabella Yao, Product Manager Intern, DB Product Management, July 2020
-
+- **Last Updated By/Date** - Richard Green, April 2021

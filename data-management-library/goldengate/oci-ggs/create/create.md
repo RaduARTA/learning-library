@@ -25,13 +25,15 @@ This lab assumes that you completed all preceding labs.
 
 *Note that the compartment names in the screenshots may differ from values that appear in your environment.*
 
-1.  In the OCI Console, open the navigation menu, and then under **Database Related Services**, select **GoldenGate**.
+1.  In the OCI Console, open the navigation menu, and then in the **Oracle Database** menu, select **GoldenGate**.
 
     ![Select GoldenGate Deployments in Navigation menu](images/01-01-02.png "Access GoldenGate service")
 
     You're brought to the **Deployments** page.
 
     ![GoldenGate Deployments page](images/01-01-02a.png "Deployments page")
+
+2.  If you're prompted to select a compartment, select the compartment associated to your LiveLab workshop. For example, if your LiveLab username is LL1234-user, select the compartment **LL1234-COMPARTMENT**.
 
 2.  On the Deployments page, click **Create Deployment**.
 
@@ -98,4 +100,4 @@ In this lab, you created an OCI Deployment and reviewed its Deployment details. 
 ## Acknowledgements
 * **Author** - Jenny Chan, Consulting User Assistance Developer, Database User Assistance
 * **Contributors** -  Denis Gray, Database Product Management
-* **Last Updated By/Date** - March 2021
+* **Last Updated By/Date** - Jenny Chan, April 2021

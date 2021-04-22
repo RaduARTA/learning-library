@@ -87,7 +87,7 @@ There are multiple ways to create an Oracle Wallet for ADB.  We will be using Or
 
 ## **STEP 3:** Connect to SQL Developer and Create Credentials
 1.  Go back to your ATP screen by clicking on the Hamburger Menu -> **Autonomous Transaction Processing**
-      ![](./images/select-atp.png " ")
+      ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 2.  Click on the **Display Name** to go to your ADB main page.
       ![](./images/display-name.png " ")

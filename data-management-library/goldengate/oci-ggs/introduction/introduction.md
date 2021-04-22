@@ -30,8 +30,8 @@ In this lab, you will:
 
 * Lab 1: Set Up the Environment
 * Lab 2: Create the Oracle Cloud Infrastructure GoldenGate Deployment
-* Lab 2: Register Databases
-* Lab 3: Create and Run the Extract and Replicat
+* Lab 3: Register Databases
+* Lab 4: Create and Run the Extract and Replicat
 * Lab 5: Monitor the Extract and Replicat
 
 ## Learn More
@@ -42,5 +42,4 @@ In this lab, you will:
 ## Acknowledgements
 * **Author** - Jenny Chan, Consulting User Assistance Developer, Database User Assistance
 * **Contributors** -  Denis Gray, Database Product Management
-* **Last Updated By/Date** - Kamryn Vinson, March 2021
-
+* **Last Updated By/Date** - Jenny Chan, April 2021

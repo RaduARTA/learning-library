@@ -38,4 +38,3 @@ The objectives of this workshop are as follows :
 - **Author** - Maqsood Alam, Product Manager, Oracle Database
 - **Contributor** - Ryota Yamanaka, Product Manager, Oracle Spatial and Graph
 * **Last Updated By/Date** - Maqsood Alam, Oct 2020
-

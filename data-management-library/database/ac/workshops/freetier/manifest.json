@@ -1,15 +1,16 @@
 {
-    "workshoptitle": "RAC Fundamentals",
+    "workshoptitle": "Application Continuity Fundamentals",
+    "help": "livelabs-help-db_us@oracle.com",
     "tutorials": [
-        {
-            "title": "Prerequisites",
-            "description": "Get a Free Trial",
-            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
-        },
          {
             "title": "Introduction",
             "description": "This lab walks you through the steps to understand a RAC database and Grid Infrastructure",
             "filename": "../../intro/intro.md"
+        },
+        {
+            "title": "Getting Started",
+            "description": "Get a Free Trial",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
         },
         {
             "title": "Lab 1: Generate SSH Keys",
@@ -22,44 +23,23 @@
             "filename": "../../setup/setup-compute.md"
         },
         {
-            "title": "Lab 3: Clusterware and Fencing",
-            "description": "This lab walks you through clusterwarwe reconfigurations and node fencing.",
-            "filename": "../../clusterware/test_gi.md"
-        },
-        {
-            "title": "Lab 4: Fast Application Notification",
-            "description": "This lab examines FAN events.",
-            "filename": "../../clusterware/fan_callouts.md"
-        },
-        {
-            "title": "Lab 5: Install Sample Schema",
-            "description": "This lab walks you through installing the sample schema.",
-            "filename": "../../services/setup.md"
-        },
-        {
-            "title": "Lab 6: Services",
+            "title": "Lab 3: Services",
             "description": "This lab walks you through some of the characteristics of database services.",
             "filename": "../../services/services.md"
         },
         {
-            "title": "Lab 7: SQL and PL/SQL - Sequences",
-            "description": "This lab walks you through the use of sequences in a RAC database.",
-            "filename": "../../sql/racsql.md"
+            "title": "Lab 4: Application Continuity",
+            "description": "This lab walks you through the function of Application Continuity.",
+            "filename": "../../appcont/appcont.md"
+        },        {
+            "title": "Lab 5: Optional Lab: Fast Application Notification",
+            "description": "This lab examines FAN events.",
+            "filename": "../../fan/fan.md"
         },
         {
-            "title": "Lab 8: Parallel Execution ",
-            "description": "This lab illustrates parallel execution.",
-            "filename": "../../sql/parallelexecution.md"
-        },
-        {
-            "title": "Lab 9: Oracle Scheduler ",
-            "description": "This lab walks you through the use of Oracle Scheduler in a RAC database.",
-            "filename": "../../sql/scheduler.md"
-        },
-        {
-            "title": "Lab 10: PL/SQL Packages",
-            "description": "This lab walks you through the use of UTL packages in a cluster.",
-            "filename": "../../sql/utl_file_test.md"
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
         }
     ]
 }

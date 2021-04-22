@@ -29,7 +29,7 @@ In this lab, you will create and run a path on the Distribution Server to send a
 
 7. For **Source Trail File**, enter the name of the OGG Trail file you're sending to OCI GoldenGate.
 
-8. For **Target Host**, enter the OCI GoldenGate hostname in the following format: **\<domain\>.deployment.goldengate.us-\<region\>-1.oci.oraclecloud.com:443**. You can copy the host from the browser address bar of your OCI GoldenGate Deployment Console window.
+8. For **Target Host**, enter the OCI GoldenGate hostname in the following format: **&lt;domain&gt;.deployment.goldengate.us-&lt;region&gt;-1.oci.oraclecloud.com:443**. You can copy the host from the browser address bar of your OCI GoldenGate Deployment Console window.
 
 9. For **Target Trail Name**, enter a two character name for the Trail file when it is received by OCI GoldenGate.
 
@@ -55,7 +55,4 @@ In this lab, you created and ran a Path on your on premise Oracle GoldenGate Dis
 * **Contributors** -  Werner He, Database Product Management
 * **Last Updated By/Date** - March 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

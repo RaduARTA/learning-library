@@ -18,7 +18,7 @@ you to:
 production ready, pre-configured MySQL database.
 
 * Automate database specific tasks such as configuration,
-security patching, backup, and monitoring.
+security patching, backup, HA, and monitoring.
 
 * Choose from multiple compute shapes, depending on
 your application and capacity requirements.
@@ -55,14 +55,13 @@ In this lab, you will be guided through the following steps:
 
 ### Prerequisites
 
-* An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
-* Some Experience with MySQL Shell - [MySQL Site](https://www.mysql.com).
+* An Oracle Free Tier, Paid or LiveLabs Cloud Account
+* Some Experience with MySQL Shell - [MySQL Site](https://dev.mysql.com/doc/mysql-shell/8.0/en/).
 
 
 ## Acknowledgements
-* **Author** - <Name, Title, Group>
-* **Contributors** -  <Name, Group> -- optional
-* **Last Updated By/Date** - <Name, Group, Month Year>
-* **Workshop (or Lab) Expiry Date** - <Month Year> -- optional, use this when you are using a Pre-Authorized Request (PAR) URL to an object in Oracle Object Store.
+* **Author** -  Airton Lastori, MySQL Principal Product Manager, MySQL Product Management 
+* **Contributors** -  Priscila Galvao, MySQL Solution Engineering
+* **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering, April 2021
 
 

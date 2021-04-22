@@ -15,8 +15,8 @@ In this lab you will:
 - Install the OCI CLI
 - Install kubectl >= 1.18
 - install Helm 3.x
-- Install Kustomize >1.19
-- Install Skaffold > 1.18
+- Install Kustomize >= 1.19
+- Install Skaffold >= 1.18
 
 ## **STEP 1:** Install the OCI CLI
 

@@ -120,7 +120,7 @@ To clone the forked repository:
 
   The repository you cloned is still connected to the remote version (your fork) so that you can push your local changes to the remote to keep them synced when you're online.
 
-5. You can also use Github Desktop to Synchronize the changes that you have made in your local file system to the forked content on your github repo, more details on using Github Desktop in Lab 4 of this workshop and also on Otube [Working with GitHub Desktop](https://otube.oracle.com/media/t/1_bxj0cfqf). 
+5. You can also use Github Desktop to Synchronize the changes that you have made in your local file system to the forked content on your github repo, more details on using Github Desktop in Lab 4 of this workshop and also on Otube [Working with GitHub Desktop](https://otube.oracle.com/media/t/1_bxj0cfqf).
 
 ![](./images/github-desktop-sync.png " ")
 
@@ -146,5 +146,3 @@ You may now [proceed to the next lab](#next).
 
 
 * **Last Updated By/Date:** Madhusudhan Rao, February 2021
-
-

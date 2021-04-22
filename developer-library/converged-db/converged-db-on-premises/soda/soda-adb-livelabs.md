@@ -369,7 +369,7 @@ Now that your environment is configured and you can connect to database from Pyt
 In this section you will connect to the Oracle database you provisioned in your previous lab. This is the database environment that you configured your Python programs to connect to.
 
 1. Go back to your ATP screen by clicking on the Hamburger Menu -> **Autonomous Transaction Processing**
-    ![](./images/select-atp.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 2. Click on the **Display Name,**
 

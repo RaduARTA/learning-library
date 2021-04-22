@@ -18,20 +18,8 @@
             "filename": "../../provision-load-adb/provision-load-adb.md"
         },
         {
-            "title": "Lab 2: Getting Started with Machine Learning Notebook",
-            "filename": "../../start-oml-nb/start-oml-nb.md"
-        },
-        {
-            "title": "Lab 3: Run the Notebook",
+            "title": "Lab 2: Run the Notebook",
             "filename": "../../run-nb/run-nb.md"
-        },
-        {
-            "title": "Lab 5: Provision and Register an OML Model into Oracle Analytics Cloud",
-            "filename": "../../provision-load-oac/provision-load-oac.md"
-        },
-        {
-            "title": "Lab 6: Visualize Data",
-            "filename": "../../visualize/visualize.md"
         },
         {
             "title": "Need Help?",

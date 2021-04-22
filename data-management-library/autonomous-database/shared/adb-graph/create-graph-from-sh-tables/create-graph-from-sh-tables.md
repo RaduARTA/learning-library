@@ -6,8 +6,6 @@
 In this lab you will explore more of Graph Studio and learn about how you can create graphs from existing relational data stored in your 
 Autonomous Data Warehouse - Shared Infrastructure (ADW) or Autonomous Transaction Processing - Shared Infrastructure (ATP) instance.
 
-**Note: While this lab uses ADW, the steps are identical for creating and connecting to an ATP database.**
-
 Estimated Lab Time: 30 minutes.
 
 ### Objectives
@@ -18,8 +16,8 @@ Estimated Lab Time: 30 minutes.
 
 ### Prerequisites
 
-- The following lab requires an ADW/ATP account. 
-- It assumes you have completed the first lab which explains how you can access the Graph Studio interface of your ADW instance and illustrates some basic concepts.
+- The following lab requires an Autonomous Data Warehouse - Shared Infrastructure or Autonomous Transaction Processing - Shared Infrastructure account. 
+- It assumes you have completed the first lab which explains how you can access the Graph Studio interface of your database instance and illustrates some basic concepts.
 
 ## **STEP 1**: Select the Tables to Create the Graph From
 
@@ -31,7 +29,7 @@ Estimated Lab Time: 30 minutes.
 
     ![](./images/models-page.png " ")
 
-    In this lab we use the Sales History (SH) sample schema to create our demo graph. The SH schema is available in all ADB instances. You can, however, apply the steps of this lab to any relational data available in your ADW/ATP database, regardless of where the data originated from. All the schemas and tables - including views - that you have access to will show up as possible input tables at te start of the modeling workflow.
+    In this lab we use the Sales History (SH) sample schema to create our demo graph. The SH schema is available in all Autonomous Database instances. You can, however, apply the steps of this lab to any relational data available in your database, regardless of where the data originated from. All the schemas and tables - including views - that you have access to will show up as possible input tables at te start of the modeling workflow.
 
     ![](./images/modeler-select-tables.png)
 
@@ -183,5 +181,5 @@ You may now **proceed to the next lab.**
 ## Acknowledgements
 * **Author** - Korbi Schmid, Product Development
 * **Contributors** -  Jayant Sharma, Product Management
-* **Last Updated By/Date** - Jayant Sharma, Nov 2020
+* **Last Updated By/Date** - Jayant Sharma, April 2021
   

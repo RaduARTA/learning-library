@@ -1,9 +1,16 @@
 # Setup Compute Instance
 
 ## Introduction
+
 This lab will show you how to verify your compute instance has been setup.
 
 Estimated Lab Time: 10 minutes
+
+Quick walk through on how to verify your compute instance setup.
+
+[](youtube:R0J7CPVYmI4)
+
+*Note: The OCI Cloud Service Console navigation may look different then what you see in the video as it is subject to change.*
 
 ### About Terraform and Oracle Cloud Resource Manager
 For more information about Terraform and Resource Manager, please see the appendix below.

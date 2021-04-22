@@ -52,9 +52,9 @@ in the top right hand side of your screen. If your username is shown as:
 
     [More information about federated users](https://docs.cloud.oracle.com/en-us/iaas/Content/Identity/Tasks/usingscim.htm).
 
-2. Return to the *Home Console Page* and navigate to **Analytics** under **Solutions and Platform** section and then **Analytics Cloud**.
+2. Return to the *Home Console Page* and navigate to **Analytics & AI** section and then **Analytics Cloud**.
 
-    ![Oracle Analytics Console](./images/lab200_5.png)
+    ![Oracle Analytics Console](./images/lab200_5_2.png)
 
     > **Note**: You must be connected as a **Single Sign On** (**Federated** user) user to a tenancy, which has available cloud credits to see this menu item. Local OCI users are not able to do this.
 

@@ -63,7 +63,7 @@ This lab assumes that you have already completed labs 1 through 4.
     <copy>cd $MSDATAWORKSHOP_LOCATION/k6; ./test.sh</copy>
     ```
 
-    Note the request rate.
+    Note the request rate. This is the number of http requests per second that were processed.
 
     ![](images/perf1replica.png " ")
 

@@ -89,10 +89,10 @@ You will run a script that will download the connection information (wallet, tns
 ## **STEP 3**: Verify and understand ATP connectivity via Helidon microservice deployment in OKE
 You will verify the connectivity from the frontend Helidon microservice to the atp admin microservice connecting to the ATP PDBs.
 
-1.  First, let’s analyze the Kubernetes deployment YAML file: `atpaqadmin-deployment.yaml`.
+1.  First, let’s analyze the Kubernetes deployment YAML file: `admin-helidon-deployment.yaml`.
 
     ```
-    <copy>cat $MSDATAWORKSHOP_LOCATION/atpaqadmin/atpaqadmin-deployment.yaml</copy>
+    <copy>cat $MSDATAWORKSHOP_LOCATION/admin-helidon/admin-helidon-deployment.yaml</copy>
     ```
 
     The volumes are set up and credentials are brought from each of the bindings
@@ -106,7 +106,7 @@ You will verify the connectivity from the frontend Helidon microservice to the a
 2.  Let’s analyze the `microprofile-config.properties` file.
 
     ```
-    <copy>cat $MSDATAWORKSHOP_LOCATION/atpaqadmin/src/main/resources/META-INF/microprofile-config.properties</copy>
+    <copy>cat $MSDATAWORKSHOP_LOCATION/admin-helidon/src/main/resources/META-INF/microprofile-config.properties</copy>
     ```
 
     This file defines the `microprofile` standard. It also has the definition of
@@ -118,7 +118,7 @@ You will verify the connectivity from the frontend Helidon microservice to the a
 3.  Let’s also look at the microservice source file `ATPAQAdminResource.java`.
 
     ```
-    <copy>cat $MSDATAWORKSHOP_LOCATION/atpaqadmin/src/main/java/oracle/db/microservices/ATPAQAdminResource.java</copy>
+    <copy>cat $MSDATAWORKSHOP_LOCATION/admin-helidon/src/main/java/oracle/db/microservices/ATPAQAdminResource.java</copy>
     ```
 
     Look for the inject portion. The `@Inject` will have the two data sources
@@ -128,11 +128,11 @@ You will verify the connectivity from the frontend Helidon microservice to the a
 4.  Go into the ATP admin folder.
 
     ```
-    <copy>cd $MSDATAWORKSHOP_LOCATION/atpaqadmin</copy>
+    <copy>cd $MSDATAWORKSHOP_LOCATION/admin-helidon</copy>
     ```
 
 
-5.  Setup information necessary for ATP DB links and AQ propagation and create the `atpaqadmin` deployment and service using the following command.
+5.  Setup information necessary for ATP DB links and AQ propagation and create the `admin-helidon` deployment and `admin` service using the following command.
 
     ```
     <copy>./deploy.sh</copy>
@@ -142,7 +142,7 @@ You will verify the connectivity from the frontend Helidon microservice to the a
 
 6.  Once successfully deployed, verify the existence of the deployment and
     service using the following command. You should notice that we now have the
-    `atpaqadmin` pod up and running.
+    `admin-helidon` pod up and running.
 
     ```
     <copy>pods</copy>
@@ -158,7 +158,7 @@ You will verify the connectivity from the frontend Helidon microservice to the a
 
   ![](images/testdatasourcescreen-withoutput.png " ")
 
-  The frontend is calling the `atpaqadmin` service and has successfully established
+  The frontend is calling the `admin` service and has successfully established
   connections to both databases `orderpdb` and `inventorypdb`.
 
 9.  Open the frontend microservice home page and click **Setup (and Tear Down) Data and Messaging** from the Labs pane.

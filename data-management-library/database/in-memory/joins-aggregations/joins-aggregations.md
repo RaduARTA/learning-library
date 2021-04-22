@@ -1,9 +1,16 @@
 # In-Memory Joins and Aggregations
 
 ## Introduction
+
+In this lab, you will explore how to enable In-Memory on the Oracle Database and perform various queries on the In-Memory Column Store.
+
 Watch the video below to get an overview of joins using Database In-Memory.
 
 [](youtube:y3tQeVGuo6g)
+
+Quick walk through on how to perform In-Memory Joins and Aggregations.
+
+[](youtube:-yactiOo8fA)
 
 ### Objectives
 

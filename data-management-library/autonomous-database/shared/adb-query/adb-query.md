@@ -19,7 +19,7 @@ In this lab, you will query files on the Oracle Cloud Infrastructure (OCI) Objec
 
 1.  If you are not already logged in to Oracle Cloud Console, log in and select Autonomous Data Warehouse from the hamburger menu and navigate into your ADW Finance Mart instance.
 
-    ![Select autonomous Data Warehouse on the left navigation menu in the Oracle Cloud homepage.](images/step1.1-LabGuide1-39fb4a5b.png " ")
+    ![Select autonomous Data Warehouse on the left navigation menu in the Oracle Cloud homepage.](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![Select your database instance.](images/step1.1-adb.png " ")
 

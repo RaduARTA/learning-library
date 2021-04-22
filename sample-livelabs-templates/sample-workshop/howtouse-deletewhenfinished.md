@@ -12,6 +12,9 @@
 
 PS  You do not need a Readme.md.  Readme's exist only at the top library levels. We direct all traffic to LiveLabs since we can't track usage on GitHub.  Do not create any direct links to GitHub, your workshop may be super popular but we can't track it so no one will know.
 
+## Absolute Path for Oracle Cloud menu Navigation
+
+**Lab1: Provision an Instance -> Step 0: Use these Standardized Pictures for Oracle Cloud Navigation (Commonly for Provisioning)** - We've included a list of common screenshots for navigating the Oracle Cloud Menu. Please read this section and use the relevant absolute path images where appropriate.  This will future proof your workshop in case of Oracle Cloud user interface updates. 
 
 ## Folder Structure
 
@@ -72,9 +75,4 @@ This [APEX Workshop](https://oracle.github.io/learning-library/developer-library
 
 * [Creating the Structure of Markdown Labs](https://confluence.oraclecorp.com/confluence/display/DCS/Creating+the+Structure+of+Markdown+Labs)
 * [See a working example on GitHub](https://github.com/oracle/learning-library/tree/master/data-management-library/autonomous-database/shared)
-
-## Adding Support Forum
-
-Copy the following section.  Replace the general support link with the support link for your workshop category.  We have a number of pre-created forums, click edit on your workshop to see if your workshop fits into any of the existing forums.  If not, submit a comment on your workshop to request to have one added.   Go back to the [LWMS](bit.ly/oraclelivelabs), Edit your workshop and see if a support forum exists for your workshop already (or if you have a forum you want to use, email us, we will add it to the list).  
-
 

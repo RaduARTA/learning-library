@@ -2,13 +2,13 @@
 
 ## Introduction
 
-This lab you will begin using the visualizations in Log Explorer to gain insight from your data
+This lab you will begin using the visualizations in Log Explorer to gain insight from your data. In this Lab we will familiarize ourselves with the visualization tool `Log Explorer` and build dashboard.
 
-**Estimated Lab Time: 15-30 minutes**
+Estimated Lab Time: 15-30 minutes
 
 ### Objectives
 
-**In this lab, you will:**
+In this lab, you will:
 * Visualize and Absorb this Data in the Logging Analytics User Interface
 * At the end of this lab you should be ready to begin creating your own dashboards and visualizations
 
@@ -17,33 +17,29 @@ This lab you will begin using the visualizations in Log Explorer to gain insight
 * An Oracle Cloud Environment
 * EBS Cloud Manager, EBS 1-Click and Advanced Provisioned Instance, Network - All setup in previous workshop
 
-### Overview
+## **STEP 1:** Overview of Log Explorer 
 
-In this Lab we will familiarize ourselves with the visualization tool `Log Explorer` and build dashboard.
+1. Navigate to Logging Analytics - Log Explorer
 
-Navigate to Logging Analytics - Log Explorer
+  **Note: The corresponding query will be shown captioned below each image**
 
-**Note: The corresponding query will be shown captioned below each image**
-
-Your screen will look similar to this, with a pie chart showing an overview of the different logs that you have ingested. Likely your VCN Flow Logs will dominate your pie chart.
+  Your screen will look similar to this, with a pie chart showing an overview of the different logs that you have ingested. Likely your VCN Flow Logs will dominate your pie chart.
 
   ![](./images/piechart.png " ")
 
-## **STEP 1:** Overview of Log Explorer 
-
-1. The first being the Query Search. You can filter through and analyze your logs based off of regex that define your search. As you change your fields and visualizations you will see these changes in the graph and the query search bar. If you ever want to return to the initial dashboard go to **Actions** and click **Create New**
+2. The first being the Query Search. You can filter through and analyze your logs based off of regex that define your search. As you change your fields and visualizations you will see these changes in the graph and the query search bar. If you ever want to return to the initial dashboard go to **Actions** and click **Create New**
 
   ![](./images/piechart1.png " ")
 
   ```* | stats count as logrecords by 'Log Source' | sort -logrecords```
 
-2. The second being the Fields panel on the left. Here you can choose what fields you want to use for grouping, filtering, and exploring your log data. You can drag your fields into the visualization panel or click on the three dots to the right of the field name to filter or pin the field.
+3. The second being the Fields panel on the left. Here you can choose what fields you want to use for grouping, filtering, and exploring your log data. You can drag your fields into the visualization panel or click on the three dots to the right of the field name to filter or pin the field.
 
   ![](./images/fields.png " ")
 
   ```* | stats count as logrecords by 'Log Source' | sort -logrecords```
 
-3. The third is the Visualizations panel that you can select what kind of graph you would like to use for your widget as well as drag and drop fields into the proper axis.
+4. The third is the Visualizations panel that you can select what kind of graph you would like to use for your widget as well as drag and drop fields into the proper axis.
 
   **Click the cluster visualization to see how this will change your widget**
 
@@ -51,7 +47,7 @@ Your screen will look similar to this, with a pie chart showing an overview of t
 
   ```* | cluster```
 
-4. Lastly the main part of the log explorer is where you can see the data in a visual. These are called widgets. 
+5. Lastly the main part of the log explorer is where you can see the data in a visual. These are called widgets. 
 
 ## **STEP 2:** Create a Dashboard
 
@@ -152,6 +148,8 @@ We will now walk through a flow to understand our logs and create some common wi
 This will now complete the Visualization lab for this workshop.
 
 For more information on how to create widgets to understand your data refer to [visualize data using charts and controls](https://docs.oracle.com/en-us/iaas/logging-analytics/doc/visualize-data-using-charts-and-controls.html#GUID-93988D5B-9717-4F63-8362-16B08BC3E020)
+
+You may now proceed to the next lab.
 
 ## Acknowledgements
 * **Author** - Quintin Hill, Cloud Engineering, Packaged Applications

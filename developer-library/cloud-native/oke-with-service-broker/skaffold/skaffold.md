@@ -1,10 +1,10 @@
-# Using Skaffold to develop and debug live containers
+# Using Skaffold to deploy, develop and debug live containers
 
 ## Introduction
 
 In the **Kustomize** lab, we saw how resource templates were combined and overlayed to build complete configurations for a specific environment.
 
-**Skaffold** leverages **Kustomize** to render templates and deploy, adding its own layer of templating to fit the need of the development cycle.
+**Skaffold** leverages **Kustomize** (among other options) to render templates and deploy, adding its own layer of templating to fit the need of the development cycle.
 
 In this lab we'll look at the **Skaffold** configuration and usage to develop applications on a remote cluster.
 
@@ -83,11 +83,30 @@ In this lab you will:
 
 7. The *`deploy`* section defines how to deploy, with *`kustomize`* and what overlay to deploy.
 
-## **STEP 2:** The Dockerfiles
+8. Running `skaffold build` (with some options) will build all the docker images tag them with git commit hashes and push them to our registry.
+
+    The makefile abstracts the options so you can simply run:
+
+    ```bash
+    <copy>
+    make build
+    </copy>
+    ```
+
+    The full command in the makefile includes the flags:
+
+    ```bash
+    skaffold build --profile=$(ENVIRONMENT) --default-repo=$(SKAFFOLD_DEFAULT_REPO)
+    ```
+
+    Which select the default environment (`development`) and default Image Registry defined in the `global.env` file to name the images in Pods.
+
+
+## **STEP 2:** Multi-stage Dockerfiles
 
 1. In this step we will look at the Docker images, as it is relevant to the profile section we'll see next.
 
-2. If you look into the *`images`* folder, we have a folder per app/service (*`producer`*, *`consumer`*, *`web`* as well as *`db-config`*)
+2. In the *`images`* folder, there is a folder per app/service (*`producer`*, *`consumer`*, *`web`* as well as the *`db-config`* initContainer). Each has its own Docker image.
 
 3. Each Dockerfile has multiple stages. For example, the *`producer`* image is as follow:
 
@@ -122,27 +141,33 @@ In this lab you will:
     CMD ["python", "/src/producer.py"]
     ```
 
-    - We start from a *`python:3.9-slim`* base image as *`builder`* stage
+4. The first stage is the builder stage
+
+    - The base image is the *`python:3.9-slim`* image defined as the *`builder`* stage
 
     - Set some ENV variable to avoid buffering logs
 
     - COPY the requirements.txt file and RUN pip install to install requirements.
 
-    - then COPY the whole *`src`* folder
+    - then COPY the whole *`src`* folder over, mirroring the structure of the service folder.
 
 4. A second stage called *`autoreload`* starts from the *`builder`* stage, and adds some development dependencies to reload the process when files change, using *`entr`*
 
     The CMD command is set to *`find /src | entr -r python /src/producer.py`* to scan for file changes in the *`src`* folder and relaunch the python process on change.
 
-5. A 3rd stage is used for *`debug`*
+    This stage is not used in production, it is a fork of the base stage to implement autoreload. With Python, reload only consists in restarting the process after file changed. With Java, Go or C++ applications, we would need to call a build tool to recompile the code in this stage.
+
+5. A 3rd stage is used for *`debug`*: the key part here is that the debugger functionality requires the language engine to be first (here `python` in order to inject the debugger properly). It works for Go, Java, Python and other languages too.
 
 6. A 4th stage starting from *`builder`* is labeled as *`prod`* (but is in fact the same as debug)
 
+    For a Java, Go or other compiled application, we would extract the compiled code from the builder stage, and only ship that binary with the production image, using the `COPY FROM` docker construct.
+
 7. Using these stages, it is possible to build different *versions* of the same image for different stages of the development flow.
 
-    - The *`autoreload`* image will be used in *`dev`* mode to auto-reload the code on file change
-    - The *`debug`* image will be used to attach the debugger (Skaffold is picky about the CMD and requires a python program to be starting with the python command to debug it)
-    - The *`prod`* image is the final stage and what will be built when no build stage is specified.
+    - The *`autoreload`* image will be used in *`dev`* mode to auto-reload the code on file change.
+    - The *`debug`* image will be used to attach the debugger.
+    - The *`prod`* image is the final stage and is what will be built when no build stage is specified.
 
 ## **STEP 3:** The Skaffold profiles
 
@@ -176,73 +201,29 @@ In this lab you will:
             value: autoreload
     ```
 
-3. The *`dev`* profile patches the artifacts (numbered 0,1,2 here) with a *`target`* of *`autoreload`* which indicates the Docker image build stage. It also patches the image *tag* with a prefix *`arl-`* so the image pushed to the registry is different from the `prod` image.
+3. The *`dev`* profile uses a new overlay called `branch` which is simply adding a suffix with the branch name to the containers when used from a feature branch.
 
-4. The *`debug`* profile patches the artifacts too, to use the *`debug`* build stage, and prefixes the image *tag* with *`dbg-`*
+3. The *`dev`* profile also patches the artifacts (numbered 0,1,2 here) with a *`target`* of *`autoreload`* which indicates the Docker image build stage. It also patches the image *tag* with a prefix *`arl-`* so the image pushed to the registry is different from the `prod` image.
 
-    ```yaml
-    - name: debug
-        activation:
-        # activate this profile when using skaffold debug
-        - command: debug
-        deploy:
-        kustomize:
-            paths:
-            - k8s/overlays/branch
-        patches:
-        # add tag prefix to avoid rebuilding over the same hash
-        - op: add
-            path: /build/tagPolicy/gitCommit/prefix
-            value: dbg-
-        # change the target image to use debugger from skaffold 
-        # requires that python
-        - op: add
-            path: /build/artifacts/0/docker/target
-            value: debug
-        - op: add
-            path: /build/artifacts/1/docker/target
-            value: debug
-        - op: add
-            path: /build/artifacts/2/docker/target
-            value: debug
-        portForward:
-        - resourceType: Deployment
-            resourceName: dev-producer
-            port: 5678
-            localPort: 5678
-        - resourceType: Deployment
-            resourceName: dev-consumer
-            port: 5678
-            localPort: 5679
-        - resourceType: Deployment
-            resourceName: dev-web
-            port: 5678
-            localPort: 5680
-    ```
-
-    - We also add a *`portForward`* section that defines remote debugger port mapping to the local machine.
-
-5. The other profiles define profiles for regular *`development`* versions, *`staging`* and *`production`*, as well as similar profiles for the *`infra`* image
+4. The other profiles define profiles for *`debug`* which we will cover later, and regular *`development`* versions, *`staging`* and *`production`*, as well as similar profiles for the *`infra`* image
 
 ## **STEP 4:** Deploying the *`infra`* templates with Skaffold
+
+*This steps shows the skaffold command we use. Don't run those directly: this step shows how skaffold is used, but the template makefile we'll describe next wraps these commands for you.*
 
 1. *`skaffold build`* builds and pushes artifacts. The *`--default-repo`* flag will add the registry info to all images to be built and published.
 
     ```bash
-    <copy>
     skaffold build --profile=development-infra  --default-repo=YOUR_REGISTRY_NAME/demo
-    </copy>
     ```
 
 2. *`skaffold deploy`* needs to be used with *`skaffold build`* the following way:
 
     ```bash
-    <copy>
     skaffold build --profile=development-infra  --default-repo=YOUR_REGISTRY_NAME/demo -q | skaffold deploy --profile=development-infra --default-repo=YOUR_REGISTRY_NAME/demo --build-artifacts -
-    </copy>
     ```
 
-3. This is quite a bit to type and remember, so we built a **makefile** to run these commands.
+3. This is quite a bit to type and remember, so use the **makefile** to run these commands.
 
 ## **STEP 5:** Using the makefile
 
@@ -258,42 +239,24 @@ In this lab you will:
 
     ```bash
     help                           This help.
-    build                          Build, tag and push all images managed by skaffold
+    build                          Build, tag and push all app images managed by skaffold
+    build-infra                    Build, tag and push all images from the infra managed by skaffold
     deploy                         Build and Deploy app templates
     deploy-infra                   Build and Deploy infra templates
     delete                         Delete the current stack
+    delete-infra                   Delete the current stack
     setup                          Setup dependencies
     render                         Render the manifests with skaffold and kustomize
     check-render                   Check if the current render matches the saved rendered manifests
-    clean-completed-jobs           Clean completed Job. Skaffold can't update them and fails
-    clean-all-jobs                 Clean any Job. Skaffold can't update them and fails
+    clean-completed-jobs           Clean completed Job. Skaffold can\'t update them and fails
+    clean-all-jobs                 Clean any Job. Skaffold can\'t update them and fails
     run                            run the stack, rendering the manifests with skaffold and kustomize
     debug                          run the stack in debug mode, rendering the manifests with skaffold and kustomize
     dev                            run the stack in dev mode, rendering the manifests with skaffold and kustomize
     install-all                    Install environments for all projects
     lint-all                       Lint all python projects
-    repo-login                     Login to the registry
+    repo-login                     Login to the registry    
     ```
-
-2. Before using the makefile, you'll need to provide your credentials.
-
-3. Create a file called *`dev.env`* at the root of the project from the template:
-
-    ```bash
-    <copy>
-    cp dev.env.template dev.env
-    </copy>
-    ```
-
-4. Provide the credentials as indicated:
-
-    ```bash
-    TENANCY_NAMESPACE=
-    DOCKER_USERNAME={TENANCY_NAMESPACE}/{USERNAME}
-    DOCKER_PASSWORD={PASSWORD}
-    ```
-
-    DO NOT use quotes for the password.
 
 5. To deploy the *`infra`* templates, simply run:
 
@@ -303,7 +266,7 @@ In this lab you will:
     </copy>
     ```
 
-    This will deploy the infra templates into the *`dev-ns`* namespace for development
+    This will build then deploy the infra templates into the *`dev-ns`* namespace for development
 
 6. To specify another environment, use:
 
@@ -356,7 +319,7 @@ In this lab you will:
 
     Try adding a newline in one of the source files of one of the app containers and see the change being listed in the logs.
 
-3. For this flow to work well, it is recommended to NOT use auto-save in your editor.
+3. For this flow to work well, it is recommended to NOT use auto-save in your editor. Rather configure it to save on focus change.
 
 4. You can find the Public IP of the web service with:
 
@@ -366,12 +329,17 @@ In this lab you will:
     </copy>
     ```
 
-    Use this public IP in Firefox with *`https://`* scheme to see the demo application.
+    Use this public IP to see the demo application.
 
     ![](.images/demoapp.png)
 
 
-5. Note when quitting **Skaffold** with *`CTRL+C`*, the deployment of the app is deleted, cleaning all pods.
+    The demo application visualizes the semi-random data generated by the producer, which is sent to streaming service, and read by the consumer service which loads it into the ATP database.
+
+    The demo application shows the data per producer, as each producer (if there are multiple) provide an id.
+
+
+5. Note when quitting **Skaffold** with *`CTRL+C`*, the deployment of the app is deleted, cleaning all pods, services, secrets etc... This is why we wanted to deploy the infrastructure separately, so it stays up between runs.
 
 You may proceed to the next lab.
 

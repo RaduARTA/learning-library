@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this workshop, we will migrate a PostgreSQL database to an Autonomous Database in Oracle Cloud Infrastructure. Purpose of this workshop we will use Oracle Goldengate for the migration and designated resources in Oracle Cloud Infrastructure. This workshop consists of 4 labs. 
+In this workshop, we will migrate a PostgreSQL database to an Autonomous Database in Oracle Cloud Infrastructure. Purpose of this workshop we will use Oracle Goldengate for the migration and designated resources in Oracle Cloud Infrastructure. This workshop consists of 5 labs. 
 
 *Estimated total Workshop Time*: 1.5 hours
 
@@ -46,7 +46,7 @@ All of the above resources are going to be deployed in Oracle Cloud Infrastructu
 * A Cloud tenancy where you have the available quotas to provision what mentioned in Architecture Overview.
 * Oracle Cloud Infrastructure supports the following browsers and versions: Google Chrome 69 or later, Safari 12.1 or later, Firefox 62 or later.
 
-**This concludes introduction. You may now [proceed to next step](#next).**
+**This concludes the introduction. You may now [proceed to next step](#next).**
 
 ## Learn More
 
@@ -56,6 +56,6 @@ All of the above resources are going to be deployed in Oracle Cloud Infrastructu
 
 ## Acknowledgements
 
-* **Author** - Bilegt Bat-Ochir " Senior Solution Engineer"
-* **Contributors** - John Craig "Technology Strategy Program Manager", Patrick Agreiter "Senior Solution Engineer"
-* **Last Updated By/Date** - Bilegt Bat-Ochir 3/22/2021
+* **Author** - Bilegt Bat-Ochir - Senior Solution Engineer
+* **Contributors** - John Craig - Technology Strategy Program Manager, Patrick Agreiter - Senior Cloud Engineer
+* **Last Updated By/Date** - Bilegt Bat-Ochir 4/15/2021

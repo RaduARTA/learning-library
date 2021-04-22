@@ -16,8 +16,8 @@ Estimated Lab Time: 15 minutes
 In this lab, you will:
 <if type="atp">
 * Login to SQL Developer Web as the HR user
-* Run queries using SQL Macros
-* </if>
+* Run queries on HR data using SQL Macros
+</if>
 <if type="dbcs">* Run queries on HR data using SQL Macros</if>
 
 ### Prerequisites
@@ -51,9 +51,8 @@ In this lab, you will:
     $ <copy>sqlplus / AS SYSDBA</copy>
     Connected.
     SQL> <copy>ALTER PLUGGABLE DATABASE pdb21 OPEN;</copy>
+    ----------------------------------------------
     Pluggable Database opened.
-    SQL>
-
     ```
 
 3. In case the wallet was closed, open the wallet in the CDB root and all PDBs because in this practice you are going to insert data.
@@ -61,11 +60,8 @@ In this lab, you will:
     ```
 
     SQL> <copy>ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN IDENTIFIED BY "WElcome123##" CONTAINER=ALL;</copy>
-
+    ----------------------------------------------
     keystore altered.
-
-    SQL>
-
     ```
 
 3. Create the `HR` schema and its tables in `PDB21`.
@@ -129,18 +125,16 @@ In this lab, you will:
           IS BEGIN
                 RETURN 'rpad(str, cnt * length(str), str)';
     END;
-    /</copy
+    /</copy>
+    ----------------------------------------------
     Function created.
-
-    SQL>
-
     ```
 </if>  
   
 <if type="atp">
 ## **STEP  1**: Login to SQL Developer Web on ADB
 
-There are multiple ways to access your Autonomous Database.  You can access it via sqlplus or by using SQL Developer Web.  To access it via sqlplus, skip to [Step 1B](#STEP1B:LogintoADBusingSQLPlus).
+There are multiple ways to access your Autonomous Database.  You can access it via SQL\*Plus or by using SQL Developer Web.  To access it via SQL\*Plus, skip to [Step 1B](#STEP1B:LogintoADBusingSQLPlus).
 
 1.  If you aren't still logged in, login to your ADB screen by clicking on the Hamburger Menu and selecting the Autonomous Database flavor you selected (ATP, ADW or AJD). Otherwise skip to the next step.
       ![](../set-operators/images/21c-home-adb.png " ")
@@ -152,13 +146,14 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 4.  Click on the **Tools** tab, select **Database Actions**, a new browser will open up.
       ![](../set-operators/images/tools.png " ")
 
-5.  Click on the **SQL** button.
-6.  Enter the username *oe* and password *WElcome123##*
+5.  Enter the username *hr* and password *WElcome123##*
+
+6.  Click on the **SQL** button.
    
 ## **STEP  1B**: Login to ADB using SQL Plus
 1. If you aren't logged into the cloud, log back in
 2. Open up Cloud Shell 
-3. Connect to the HR user using sqlplus by entering the commands below.
+3. Connect to the HR user using SQL\*Plus by entering the commands below.
    
     ```
     export TNS_ADMIN=$(pwd)/wallet
@@ -168,6 +163,19 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 </if>
 
 ## **STEP  2**: Explore SQL Macros
+<if type="atp">
+1. Create the SQM as a scalar expression.
+
+    ```
+    SQL> <copy>CREATE OR REPLACE FUNCTION concat_self(str varchar2, cnt pls_integer)
+                RETURN VARCHAR2 SQL_MACRO(SCALAR)
+          IS BEGIN
+                RETURN 'rpad(str, cnt * length(str), str)';
+    END;
+    /</copy>
+    ```
+    ![](./images/step2-sqm.png " ")
+</if>
 
 1. Use the SQM to query the table and display the employees names doubled.
 
@@ -176,7 +184,11 @@ There are multiple ways to access your Autonomous Database.  You can access it v
     SQL> <copy>COL CONCAT_SELF(LAST_NAME,2) FORMAT A40</copy>
 
     SQL> <copy>SELECT last_name, concat_self(last_name,2) FROM hr.employees;</copy>
-
+    <if type="atp">
+    ```
+    ![](./images/step2-double.png " ")
+    </if>
+    <if type="dbcs">
     LAST_NAME                 CONCAT_SELF(LAST_NAME,2)
     ------------------------- ----------------------------------------
     Abel                      AbelAbel
@@ -192,10 +204,8 @@ There are multiple ways to access your Autonomous Database.  You can access it v
     Bissot                    BissotBissot
     ...
     107 rows selected.
-
-    SQL>
-
     ```
+    </if>
 
 2. Use the SQM to query the table and display the employees names tripled.
 
@@ -204,9 +214,12 @@ There are multiple ways to access your Autonomous Database.  You can access it v
     SQL> <copy>COL CONCAT_SELF(LAST_NAME,3) FORMAT A40</copy>
 
     SQL> <copy>SELECT last_name, concat_self(last_name,3) FROM hr.employees;</copy>
-
+    <if type="atp">
+    ```
+    ![](./images/step2-triple.png " ")
+    </if>
+    <if type="dbcs">
     LAST_NAME                 CONCAT_SELF(LAST_NAME,3)
-
     ------------------------- ----------------------------------------
     Abel                      AbelAbelAbel
     Ande                      AndeAndeAnde
@@ -222,26 +235,24 @@ There are multiple ways to access your Autonomous Database.  You can access it v
     Bloom                     BloomBloomBloom
     Bull                      BullBullBull
     Cabrio                    CabrioCabrioCabrio
-
     ...
-
     107 rows selected.
-
-    SQL>
-
     ```
+    </if>
 
 ## **STEP 3:** Use SQL Macro as a table expression
-<if type="atp">
+<if type="notused">
 1.  Login to your ADB screen by clicking on the Hamburger Menu and selecting the Autonomous Database flavor you selected (ATP, ADW or AJD). Otherwise skip to the next step.
-      ![](../set-operators/images/21c-home-adb.png " ")
+      
 
 2.  If you can't find your ADB instance, ensure you are in the correct compartment, you have chosen the flavor of ADB you choose in the earlier lab and that you are in the correct region.
+
+    ![](../set-operators/images/21c-home-adb.png " ")
 3.  Click on the **Display Name** to go to your ADB main page.
-      ![](../set-operators/images/21c-adb.png " ")
+    ![](../set-operators/images/21c-adb.png " ")
 
 4.  Click on the **Tools** tab, select **Database Actions**, a new browser will open up.
-      ![](../set-operators/images/tools.png " ")
+    ![](../set-operators/images/tools.png " ")
 
 5.  Login with the *admin* user, click **Next**.  Enter the password *WElcome123##* 
 6.  Click on the **SQL** button.
@@ -254,37 +265,39 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 2. Use a simple view to display the sum of the salaries per department.
 
     ```
-
     SQL> <copy>CREATE VIEW v_budget
      AS SELECT department_id, sum(salary) v_budget
         FROM hr.employees
         GROUP BY department_id;</copy>
-
-    View created.
-
-    SQL>
-
+    <if type="atp">
     ```
+    ![](./images/step3-create.png " ")
+    </if>
+    <if type="dbcs">
+    ----------------------------------------------
+    View created.
+    ```
+    </if>
 
 3. Query the result from the view.
 
     ```
-
     SQL> <copy>SELECT * FROM v_budget WHERE department_id IN (10,50);</copy>
-
+    <if type="atp">
+    ```
+    ![](./images/step3-query1.png " ")
+    </if>
+    <if type="dbcs">
     DEPARTMENT_ID   V_BUDGET
     ------------- ----------
                50     156400
                10       4400
-
-    SQL>
-
     ```
+    </if>
 
 4. Now use an SQM as a table expression. Create the SQM.
 
     ```
-
     SQL> <copy>CREATE OR REPLACE FUNCTION budget
     return varchar2 SQL_MACRO
     IS
@@ -294,27 +307,31 @@ There are multiple ways to access your Autonomous Database.  You can access it v
                  group by department_id )';
     END;
     /</copy>
-
-    Function created.
-
-    SQL>
-
+    <if type="atp">
     ```
+    ![](./images/step3-function1.png " ")
+    </if>
+    <if type="dbcs">
+    ----------------------------------------------
+    Function created.
+    ```
+    </if>
 
 5. Use the SQM to display the result for the departments 10 and 50.
 
     ```
-
     SQL> <copy>SELECT * FROM budget() WHERE department_id IN (10,50);</copy>
-
+    <if type="atp">
+    ```
+    ![](./images/step3-query2.png " ")
+    </if>
+    <if type="dbcs">
     DEPARTMENT_ID     BUDGET
     ------------- ----------
                50     156400
                10       4400
-
-    SQL>
-
     ```
+    </if>
 
 6. The second usage of an SQL macro as a table expression shows how to use the SQM to display sum of the salaries per department for a particular job.
 
@@ -322,7 +339,6 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 7. Create the SQM.
 
     ```
-
     SQL> <copy>CREATE OR REPLACE FUNCTION budget_per_job(job_id varchar2)
     return varchar2 SQL_MACRO
     IS
@@ -333,43 +349,48 @@ There are multiple ways to access your Autonomous Database.  You can access it v
                  group by department_id )';
     END;
     /</copy>
-
-    Function created.
-
-    SQL>
-
+    <if type="atp">
     ```
+    ![](./images/step3-function2.png " ")
+    </if>
+    <if type="dbcs">
+    ----------------------------------------------
+    Function created.
+    ```
+    </if>
 
 8. Use the SQM to display the result for the `ST_CLERK` job in department 10.
 
     ```
-
     SQL> <copy>SELECT * FROM budget_per_job('ST_CLERK') WHERE department_id = 10;</copy>
-
-    no rows selected
-
-    SQL>
-
+    <if type="atp">
     ```
+    ![](./images/step3-query3.png " ")
+    </if>
+    <if type="dbcs">
+    ----------------------------------------------
+    no rows selected
+    ```
+    </if>
 
 9. Use the SQM to display the result for the `SH_CLERK` job in department 50.
 
     ```
-
     SQL> <copy>SELECT * FROM budget_per_job('SH_CLERK') WHERE department_id = 50;</copy>
-
+    <if type="atp">
+    ```
+    ![](./images/step3-query4.png " ")
+    </if>
+    <if type="dbcs">
     DEPARTMENT_ID BUDGET_PER_JOB
     ------------- --------------
                50          64300
-
-    SQL>
-
     ```
+    </if>
 
 10. Use the `DBMS_OUTPUT` package to display the rewritten SQL query. Recreate the function including the `DBMS_OUTPUT` package.
 
     ```
-
     SQL> <copy>CREATE OR REPLACE function budget_per_job(job_id varchar2)
     return varchar2 SQL_MACRO
     is
@@ -387,18 +408,20 @@ There are multiple ways to access your Autonomous Database.  You can access it v
       return stmt;
     end;
     /</copy>
-
-    Function created.
-
-    SQL>
-
+    <if type="atp">
     ```
+    ![](./images/step3-function3.png " ")
+    </if>
+    <if type="dbcs">
+    ----------------------------------------------
+    Function created.
+    ```
+    </if>
 
 <if type="dbcs">
 11. Re-execute the query using the SQM.
 
     ```
-
     SQL> <copy>SET serveroutput on</copy>
     SQL> <copy>SET LONG 20000</copy>
     SQL> <copy>SELECT * FROM budget_per_job('ST_CLERK') WHERE department_id = 50;</copy>
@@ -417,14 +440,10 @@ There are multiple ways to access your Autonomous Database.  You can access it v
        job_id = budget_per_job.job_id
        group by department_id
     ----------------------------------------------
-
-    SQL>
-
     ```
 12. Use the `USER_PROCEDURES` view to display the new values of the `SQL_MACRO` column.
 
     ```
-
     SQL> <copy>COL object_name FORMAT A30</copy>
     SQL> <copy>SELECT object_name, sql_macro, object_type FROM user_procedures;</copy>
 
@@ -453,30 +472,19 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
     ```
     SQL> <copy>SELECT * FROM budget_per_job('ST_CLERK') WHERE department_id = 50;</copy>
-
-    DEPARTMENT_ID     BUDGET
-    ------------- ----------
-               50      55700
-    SQL>
-
     ```
+
+    ![](./images/step3-query5.png " ")
+
+
 12. Use the `USER_PROCEDURES` view to display the new values of the `SQL_MACRO` column.
 
     ```
     SQL> <copy>SELECT object_name, sql_macro, object_type FROM user_procedures;</copy>
-
-    OBJECT_NAME                    SQL_MA OBJECT_TYPE
-    ------------------------------ ------ -------------
-    CONCAT_SELF                    SCALAR FUNCTION
-    SECURE_DML                     NULL   PROCEDURE
-    ADD_JOB_HISTORY                NULL   PROCEDURE
-    BUDGET                         TABLE  FUNCTION
-    BUDGET_PER_JOB                 TABLE  FUNCTION
-    SECURE_EMPLOYEES                      TRIGGER
-    UPDATE_JOB_HISTORY                    TRIGGER
-
-    7 rows selected.
     ```
+
+    ![](./images/step3-query6.png " ")
+
 </if>
 
 
@@ -490,5 +498,5 @@ You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
 * **Author** - Donna Keesling, Database UA Team
-* **Contributors** -  David Start, Kay Malcolm, Database Product Management
-* **Last Updated By/Date** -  Kay Malcolm, March 2020
+* **Contributors** -  David Start, Kay Malcolm, Didi Han, Database Product Management
+* **Last Updated By/Date** -  Didi Han, April 2021

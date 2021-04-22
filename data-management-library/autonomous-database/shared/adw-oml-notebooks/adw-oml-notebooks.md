@@ -37,7 +37,7 @@ The first step is to create two new users.
 
 1.  If you are not logged in to Oracle Cloud Console, log in and select **Autonomous Data Warehouse** from the hamburger menu and navigate into your **ADW Finance Mart** instance.
 
-    ![](images/step1.1-LabGuide1-39fb4a5b.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![](images/step1.1-adb.png " ")
 

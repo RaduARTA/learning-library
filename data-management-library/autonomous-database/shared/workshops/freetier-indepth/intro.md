@@ -40,7 +40,7 @@ Oracle’s Autonomous Database is the perfect quick-start service for fast data 
 ## Workshop Prerequisites
 This workshop requires an Oracle Cloud account. You may use your own cloud account, a cloud account that you obtained through a trial, a Free Tier account, or a training account whose details were given to you by an Oracle instructor.
 
-**You are all set; let's begin! Click Lab 1 in the Contents menu on the right.**
+**You are all set; let's begin! Click Getting Started in the Contents menu on the left.**
 
 ## Want to Learn More About Autonomous Database?
 
@@ -58,5 +58,4 @@ Use these links to get more information about Oracle Autonomous Database:
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Richard Green, April 2020
-
+- **Last Updated By/Date** - Richard Green, April 2021

@@ -21,7 +21,7 @@ Notes:
 ## Logging Analytics
 
 ### **Access this workshop**:
-[**Extend EBS with Logging Analytics**]()
+[**Extend EBS with Logging Analytics**](https://apexapps.oracle.com/pls/apex/dbpm/r/livelabs/workshop-attendee-2?p210_workshop_id=803&p210_type=1&session=14069977178339)
 
 Estimated Workshop Time: 2.5 hours
 

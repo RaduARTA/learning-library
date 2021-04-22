@@ -1,9 +1,16 @@
 # Enable In-Memory
 
 ## Introduction
+
+In this lab, you will explore how to enable In-Memory on the Oracle Database and various views to monitor In-Memory.
+
 Watch the video below to get an explanation of enabling the In-Memory column store.
 
 [](youtube:dZ9cnIL6KKw)
+
+Quick walk through on how to enable In-Memory.
+
+[](youtube:oCES149OPeE)
 
 ### Objectives
 

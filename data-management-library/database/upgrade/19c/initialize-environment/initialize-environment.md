@@ -44,9 +44,9 @@ For ease of execution of this workshop, your instance has been pre-configured fo
 1. Launch your browser to the following URL
 
     ```
-    URL: <copy>http://[your instance public-ip address]:8080/guacamole</copy>
+    <copy>http://[your instance public-ip address]:8080/guacamole</copy>
+    e.g: http://111.888.111.888:8080/guacamole
     ```
-    ![](./images/guacamole.png " ")
 
 2. Provide login credentials
 
@@ -200,4 +200,3 @@ You may now [proceed to the next lab](#next).
 * **Author** - Mike Dietrich, Database Product Management
 * **Contributors** -  Roy Swonger, Kay Malcolm, Rene Fontcha
 * **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, March 2021
-

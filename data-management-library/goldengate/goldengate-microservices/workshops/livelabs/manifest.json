@@ -38,6 +38,11 @@
       "filename": "../../transformations/transformations.md"
     },
     {
+      "title": "Lab 6: Conflict Detection and Resolution (Heterogeneous)",
+      "description": "Conflict Detection and Resolution (Heterogeneous)",
+      "filename": "../../cdr-heterogeneous/cdr-heterogeneous.md"
+    },
+    {
       "title": "Need Help?",
       "description": "Solutions to Common Problems and Directions for Receiving Live Help",
       "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"

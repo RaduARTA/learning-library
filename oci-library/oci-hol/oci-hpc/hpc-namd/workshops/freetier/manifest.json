@@ -5,15 +5,11 @@
         {
             "title": "Introduction",
             "description": "Brief Introduction on Oracle HPC",
-<<<<<<< HEAD
-            "filename": "../../intro/intro.md"
-=======
             "filename": "../../hpc-introduction/hpc-introduction.md"   
         },
         {
             "title": "Getting Started",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
->>>>>>> upstream/master
         },
         {
             "title": "NAMD Introduction",
@@ -46,11 +42,7 @@
         {
             "title": "Need Help?",
             "description": "Solutions to Common Problems and Directions for Receiving Live Help",
-<<<<<<< HEAD
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
-=======
-            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
->>>>>>> upstream/master
         }
     ]
 }

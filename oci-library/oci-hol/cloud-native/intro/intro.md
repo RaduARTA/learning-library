@@ -39,4 +39,3 @@ You may now [proceed to the next lab](#next).
 * **Author** - Adao Junior
 * **Contributors** -  Kamryn Vinson, Adao Junior, Steven Nichols
 * **Last Updated By/Date** - Adao Junior, October 2020
-

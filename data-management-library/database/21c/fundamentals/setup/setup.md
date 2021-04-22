@@ -124,7 +124,7 @@ In this lab, you will:
     </copy>
     ```
 
-4. Ensure that the TNS alias have been created for `CDB21`, `PDB21` and `PDB21_2` in the tnsnames.ora file. If they are not there then you will need to add them. The file is located in `/u01/app/oracle/homes/OraDB21Home1/network/admin/tnsnames.ora`
+4. Ensure that the TNS alias have been created for `CDB21`, `PDB21` and `PDB21_2` in the tnsnames.ora file. If they are not there then you will need to add them. The file is located in `/u01/app/oracle/homes/OraDB21Home1/network/admin/tnsnames.ora`.
 
     ```
 	  <copy>
@@ -171,7 +171,7 @@ In this lab, you will:
 
     ````
 
-7. Test the connection to CDB21.  Connect to CDB21 with SQL*Plus using the password *WElcome123##*
+7. Test the connection to CDB21.  Connect to CDB21 with SQL*Plus using the password **WElcome123##**.
 
     ````
 	  <copy>
@@ -179,7 +179,7 @@ In this lab, you will:
 	  </copy>
 	  ````
 
-8. Verify that the container name is CDB$ROOT.
+8. Verify that the container name is **CDB$ROOT**.
 
     ````
     <copy>
@@ -195,7 +195,7 @@ In this lab, you will:
     </copy>
     ````
 
-10.  Show the container name
+10.  Show the container name. It should now display **PDB21**.
 
     ````
     <copy>
@@ -203,7 +203,7 @@ In this lab, you will:
     </copy>
     ````
 
-11. Exit SQL*Plus
+11. Exit SQL*Plus.
 
     ````
     <copy>

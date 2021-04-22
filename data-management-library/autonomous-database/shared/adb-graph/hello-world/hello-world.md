@@ -6,14 +6,14 @@
 In this lab you will explore Graph Studio and learn how you can create and analyze a graph from scratch very quickly using
 Autonomous Data Warehouse - Shared Infrastructure (ADW) or Autonomous Transaction Processing - Shared Infrastructure (ATP) instance.
 
-**Note: While this lab uses ADW, the steps are identical for creating and connecting to an ATP database.**
+**Note: While this lab uses Autonomous Data Warehouse, the steps are identical for creating and connecting to an Autonomous Transaction Processing database.**
 
 Estimated Lab Time: 10 minutes.
 
 ### Objectives
 
 Learn how to
-- connect to your autonomous database using **Graph Studio**
+- connect to your Autonomous Database using **Graph Studio**
 - quickly create a very simply graph from scratch using PGQL
 - load graphs into memory for analysis
 - create a simple notebook
@@ -22,13 +22,13 @@ Learn how to
 
 ### Prerequisites
 
-- The following lab requires an ADB-Shared (ADW/ATP) account.
+- The following lab requires an Autonomous Data Warehouse - Shared Infrastructure or Autonomous Transaction Processing - Shared Infrastructure account.
 
 ## **STEP 1**: Connect to your Autonomous Database using Graph Studio
 
 1. If you have the Graph Studio URL then proceed to step 3.
 
-    Log in to the OCI Console, choose the ADB-S (i.e. ADW or ATP) instance, then click on the Tools tab on the details page menu on the left.
+    Log in to the OCI Console, choose the Autonomous Database instance, then click on the Tools tab on the details page menu on the left.
 
    ![OCI Console](./images/oci-console-adb-tools-graph-studio-link.png)
 
@@ -49,7 +49,7 @@ Learn how to
 
     in your browser. You can find the [region identifier for all regions here](https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm).
 
-4. Enter the ADW/ATP account credentials or the Graph-enabled user (e.g. `GRAPHUSER`) into the login screen.   
+4. Enter the Autonomous Database account credentials or the Graph-enabled user (e.g. `GRAPHUSER`) into the login screen.   
    Do **not** use `ADMIN`.
 
     ![](./images/graph-studio-login.png " ")
@@ -257,5 +257,5 @@ Please **proceed to the next lab** to see more complex examples of how to create
 ## Acknowledgements
 * **Author** - Korbi Schmid, Product Development
 * **Contributors** -  Jayant Sharma, Product Management
-* **Last Updated By/Date** - Jayant Sharma, Nov 2020
+* **Last Updated By/Date** - Jayant Sharma, April 2021
 

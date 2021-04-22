@@ -2,16 +2,16 @@
 
 ## Introduction
 
-In this lab we will review and setup all components required to successfully upgrade IAM 11g to 12c version.  
+In this lab we will review and setup all components required to successfully upgrade IAM 11.1.2.3 to 12.2.1.4 version.  
 
 *Estimated Lab Time*:  30 minutes
 
 ### Objectives
-- Initialize the IAM 11g baseline workshop environment.
+- Initialize the IAM 11.1.2.3 baseline workshop environment.
 
 ### Prerequisites
 This lab assumes you have:
-- A Free Tier, Paid or LiveLabs Oracle Cloud account
+- A Paid or LiveLabs Oracle Cloud account
 - SSH Private Key to access the host via SSH
 - You have completed:
     - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
@@ -82,47 +82,9 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
     <copy>sudo su - oracle</copy>
     ```
 
-## **STEP 1**: Validate the environment
-1. As user *oracle* from any of the sessions started above, verify that the DB listener and all databases are up and running.
+Follow the steps below to initialize the IAM 11.1.2.3 components.
 
-    ```
-    <copy>
-    systemctl status oracle-database
-    </copy>
-    ```
-    ![](./images/check-db-service-up.png " ")
-
-    ***Note***: The host is preconfigured to automatically start the database and database listener.
-
-2. Review environment details
-
-    This existing environment was set up using the LCM Automated setup utility for 11.1.2.3. This VM contains an 11g database, plus an integrated setup of OUD and OAM and OIM all at the 11.1.2.3 level. Some pertinent info for the existing setup is:
-
-    - **Domain locations**: /u01/app/oracle/config/domains
-    - **Instances**: /u01/app/oracle/config/instances
-    - **Access MW_HOME**: /u01/app/oracle/products/access
-    - **Identity MW_HOME**: /u01/app/oracle/products/identity
-    - **Directory MW_HOME**: /u01/app/oracle/products/dir
-
-3. Review key authentication details
-
-    - User connections in SQL Developer and jXplorer are pre-defined for some of the users.
-    - Password for all users is "*IAMUpgrade12c##*" with the exception of Guacamole remote desktop access provided above.
-    - Key users:
-        - **WLS Domain User**: weblogic
-        - **OAM User**: oamadmin
-        - **OIM User**: xelsysadm
-        - **OUD User**: Directory Manager
-
-4. As user *oracle*, review staged software needed for all labs.
-    For your convenience all IAM 12c software you will need for upgrading the suite have been staged on the instance under */home/oracle/Downloads*
-
-    ```
-    <copy>ls -ls ~oracle/Downloads</copy>
-    ```
-    ![](./images/staged-software.png " ")
-
-## **STEP 2**: Start IAM 11g Suite
+## **STEP 1**: Start Oracle IAM 11.1.2.3 Components
 
 1.  From any of the terminal session started above, proceed as shown below to start all components as “*oracle*” user
 
@@ -179,15 +141,9 @@ You may now [proceed to the next lab](#next).
 
 ## Learn More
 Use these links to get more information about Oracle Identity and Access Management:
-- [IAM 11g to 12c upgrade documentation](https://docs.oracle.com/en/middleware/idm/suite/12.2.1.4/upgrade.html).  
-- [Oracle Identity Management Website](https://docs.oracle.com/en/middleware/idm/suite/12.2.1.4/index.html)
-- [Oracle Identity Governance Documentation](https://docs.oracle.com/en/middleware/idm/identity-governance/12.2.1.4/index.html)
-- [Oracle Access Management Documentation](https://docs.oracle.com/en/middleware/idm/access-manager/12.2.1.4/books.html)
+- [Oracle Identity Management 12.2.1.4.0](https://docs.oracle.com/en/middleware/idm/suite/12.2.1.4/index.html).  
 
 ## Acknowledgements
 * **Author** - Anbu Anbarasu, Director, Cloud Platform COE  
-* **Contributors** -  Eric Pollard, Rene Fontcha  
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, March 2021
-
-## Need Help?
-Please submit feedback or ask for help by sending an email to [livelabs-help-iam_us@oracle.com](livelabs-help-iam_us@oracle.com). Please make sure to include your workshop name and lab name. You can also include screenshots and attach files.
+* **Contributors** -  Eric Pollard - Sustaining Engineering, Ajith Puthan - IAM Support, Rene Fontcha
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, April 2021

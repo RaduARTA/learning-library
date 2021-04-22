@@ -105,7 +105,3 @@ The above copyright notice and this permission notice shall be included in all c
 - **Author** - Troy Anthony, DB Product Management
 - **Contributors** - Anoosha Pilli, Anoosha Pilli, Kay Malcolm
 - **Last Updated By/Date** - Kay Malcolm, October 2020
-
-## Need Help?
-
-Please submit feedback or ask for help by sending an email to livelabs-help-db_us@oracle.com. Please make sure to include your workshop name and lab name.  You can also include screenshots and attach files.

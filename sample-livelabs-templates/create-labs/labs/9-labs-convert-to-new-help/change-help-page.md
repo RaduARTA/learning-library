@@ -120,3 +120,7 @@ This sounds like an arduous task, but we can simplify it a lot by using the "sea
 
 4. If you're confident, then go ahead and replace all to delete the instances. Then search the broad **"## Need Help"** string to start the process over again with a new parameter to regex search for until you've caught all occurrences. 
 
+## Acknowledgements
+
+* **Author** - Didi Han, Database Product Management
+* **Last Updated By/Date** - Didi Han, April 2021

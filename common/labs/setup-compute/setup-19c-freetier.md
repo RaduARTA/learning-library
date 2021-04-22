@@ -1,9 +1,16 @@
 # Setup Compute Instance
 
 ## Introduction
+
 This lab will show you how to setup a compute instance running a pre-configured Compute and the corresponding Virtual Cloud Network (VCN).
 
 Estimated Lab Time:  25 minutes
+
+Quick walk through on how to set up your compute instance.
+
+[](youtube:O79UmNZwrWE)
+
+*Note: The OCI Cloud Service Console navigation may look different then what you see in the video as it is subject to change.*
 
 ### About Terraform and Oracle Cloud Resource Manager
 For more information about Terraform and Resource Manager, please see the appendix below.

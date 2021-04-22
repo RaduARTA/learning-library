@@ -123,7 +123,7 @@ To create a Pull Request:
 
 After your pull request is complete, wait a few minutes and perform the steps below.  Github pages takes approximately 5 minutes for the pages to be copied
 
-1.  replace your GitHub pages site from Step 3 -> #5 with oracle.github.io.  This will take you to the full path of your workshop.  
+1.  Replace your GitHub pages site from Step 3 -> #5 with oracle.github.io.  This will take you to the full path of your workshop.  
 
   ![](./images/git-hub-stage-git-hub-pages-settings-page-published.png " ")
 

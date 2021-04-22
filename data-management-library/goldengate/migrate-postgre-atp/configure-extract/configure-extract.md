@@ -35,7 +35,8 @@ For a technical overview of this lab step, please watch the following video:
 	ssh opc@your_microservice_ip_address -i ~/.ssh/oci
 	</copy>
 	```
-
+	When you are connecting to a compute instance for the first time, you will see the question **Are you sure you want to continue connecting (yes/no)?**. Enter **yes**.
+	
 2. Once you are there run the below commands, which will add the necessary ports.
 
 	```
@@ -66,7 +67,8 @@ For a technical overview of this lab step, please watch the following video:
 	ssh opc@your_ogg_pgsql_ip_address -i ~/.ssh/oci
 	</copy>
 	```
-
+	When you are connecting to a compute instance for the first time, you will see the question **Are you sure you want to continue connecting (yes/no)?**. Enter **yes**.
+	
 ## **Step 3**: Run GGSCI 
 
 1. After logging in to the compute node, you need to make sure your Goldengate environment knows about the current odbc driver. Execute the following commands separately in your cloud-shell:
@@ -401,6 +403,6 @@ Up to now, we created 2 extract processes that are now capturing changes and shi
 
 ## Acknowledgements
 
-* **Author** - Bilegt Bat-Ochir " Senior Solution Engineer"
-* **Contributors** - John Craig "Technology Strategy Program Manager", Patrick Agreiter "Senior Solution Engineer"
-* **Last Updated By/Date** - Bilegt Bat-Ochir 3/22/2021
+* **Author** - Bilegt Bat-Ochir - Senior Solution Engineer
+* **Contributors** - John Craig - Technology Strategy Program Manager, Patrick Agreiter - Senior Cloud Engineer
+* **Last Updated By/Date** - Bilegt Bat-Ochir 4/15/2021

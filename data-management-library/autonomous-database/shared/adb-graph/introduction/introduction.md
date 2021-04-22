@@ -27,12 +27,12 @@ In this workshop you will:
  
 ### Prerequisites
 * Oracle Cloud Account
-* Provisioned ADB-Shared instance
+* A provisioned Autonomous Database on Shared Infrastructure
   
 
 ## Acknowledgements
 * **Author** - Korbi Schmidt, Product Development
 * **Contributors** -  Jayant Sharma, Product Management
-* **Last Updated By/Date** - Jayant Sharma, Feb 2021
+* **Last Updated By/Date** - Jayant Sharma, April 2021
 
 

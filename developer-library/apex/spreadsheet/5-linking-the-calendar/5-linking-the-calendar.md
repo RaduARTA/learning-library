@@ -60,36 +60,7 @@ When you click on a calendar entry then it shows event details. It would be far 
 
     ![](images/set-link.png " ")
 
-3. It is important that the calendar is updated whenever the Task Name or Start Date is changed using the new link. To ensure the page is updated appropriately you need to define a Dynamic Action to refresh the calendar region when the dialog (modal page) is closed.
-
-    A Dynamic Action is a declarative way to define client-side interactivity. Developers specify when an event fires, what actions are to be taken, and on what components the action is to be performed.
-
-    In Page Designer, within the Rendering tree (left pane), _right-click_ on the Calendar region. Click **Create Dynamic Action**.
-
-    ![](images/create-dynamic-action.png " ")
-
-4. With the Dynamic Action selected, within the Property Editor (right pane), enter / select the following.
-
-    | Group | Property | Value |
-    | --- | --- | --- |
-    | Identification | Name | **Refresh Calendar** |
-    | When | Event | **Dialog Closed** |
-    | | Selection Type | **Region** |
-    | | Region | **Calendar** |
-
-    ![](images/name-dynamic-action.png " ")
-
-5. Within the Rendering tree (left pane), under the True action for the Dynamic Action, select **Show**. In the Property Editor (right pane), select the following.
-
-    | Group | Property | Value |
-    | --- | --- | --- |
-    | Identification | Action | **Refresh** |
-    | Affected Elements | Selection Type | **Region** |
-    | | Region | **Calendar** |
-
-    ![](images/define-action.png " ")
-
-6. In Page Designer, within the toolbar, click **Save and Run** to review the completed application.
+3. In Page Designer, within the toolbar, click **Save and Run** to review the completed application.
 
     In the runtime environment, from the Calendar, select an event. In the Project Task form page update the Task Name and Start Date. Click **Apply Changes**.
 

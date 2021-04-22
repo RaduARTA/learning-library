@@ -103,7 +103,7 @@ In this step you will run several scripts.
 
         [oracle@OGG181DB183 db]$ ./clone_pdb_182.sh
 
-You may now *proceed to the next lab*.
+You may now [proceed to the next lab](#next).
 
 ## Learn More
 

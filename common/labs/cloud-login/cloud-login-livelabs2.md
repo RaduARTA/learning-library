@@ -2,13 +2,13 @@
 
 ## Introduction
 
-Before you get started, you should have an active *Oracle Account* login and a LiveLabs reservation. If you don't already have a login, follow the next step to request one free of charge.
+To get started, you need to have an active Oracle Cloud account and a LiveLabs reservation. An Oracle Cloud account is free and needed to gain access to your LiveLabs reservation, Oracle Support, and other Oracle publicly-accessible content.
 
-*Note:* An *Oracle Account* is free and is needed to gain access to oracle publicly accessible content and Oracle Support to name the few.
+If you already have an Oracle Cloud account, you can skip to Step 2.
 
-If you already have a reservation, skip to the next lab to start your workshop by reading through the Introduction!
+If you already have a reservation, skip to the next lab to start your workshop!
 
-## Step 0: **Create an Oracle Account**
+## STEP 1: **Create an Oracle Account**
 
 Creating an Oracle account can be summarized in the following two simple steps.
 
@@ -20,7 +20,7 @@ Creating an Oracle account can be summarized in the following two simple steps.
 
   ![](images/create-account-oracle-2.png " ")
 
-## Step 1: **Request Workshop Reservation**
+## STEP 2: **Request Workshop Reservation**
 
 1. Using your *Oracle Account Login* go to [LiveLabs 2.0](http://bit.ly/golivelabs) and click  ![](images/reserve.png) to request a reservation for this workshop.
 
@@ -45,6 +45,7 @@ Creating an Oracle account can be summarized in the following two simple steps.
 You may now [proceed to the next lab](#next).
 
 ## **Rate this Workshop**
+
 When you are finished don't forget to rate this workshop!  We rely on this feedback to help us improve and refine our LiveLabs catalog.  Follow the steps to submit your rating. 
 
 1.  Go back to your **workshop homepage** in LiveLabs by searching for your workshop and clicking the Launch button.
@@ -63,5 +64,5 @@ If you still have an active reservation, you can also rate by going to My Reserv
 
 - **Created By/Date** - Tom McGinn, Database Innovations Architect, Database Product Management, March 2020
 - **Contributors** - Kay Malcolm, Rene Fontcha, Kamryn Vinson, Anoosha Pilli
-- **Last Updated By/Date** - Anoosha Pilli, February 2020
+- **Last Updated By/Date** - Anoosha Pilli, April 2021
 

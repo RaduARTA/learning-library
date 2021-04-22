@@ -116,7 +116,6 @@ The `setup_analytic_table.sh` shell script creates in both `PDB21` and `PDB19` t
 
     SQL> EXIT
     $
-
     ```
 </if>
 <if type="atp">
@@ -161,13 +160,17 @@ There are multiple ways to access your Autonomous Database.  You can access it v
     Connected to:
     ```
     ```
-    SQL> <copy>SET PAGES 100</copy>
-</if>
+    SQL> <copy>SET PAGES 100</copy></if>
 <if type="atp">
     ```
 </if>
     SQL> <copy>SELECT * FROM trades;</copy>
 
+<if type="atp">
+    ```
+    ![](./images/step2-1.png " ")
+</if>
+<if type="dbcs">
           ACNO        TID TDAY      TTYP     AMOUNT TICK
     ---------- ---------- --------- ---- ---------- ----
           123          1 08-APR-20 buy        1000 CSCO
@@ -184,16 +187,13 @@ There are multiple ways to access your Autonomous Database.  You can access it v
           123         13 16-APR-20 buy        2000 HPQ
 
     12 rows selected.
-
-    SQL>
-
     ```
+    </if>
 
 1. Compute the total amount over the last five days on which account number 123 performed a “buy”. To answer this query, you can group the data by trade day, compute the sum of amount on each trade day, and then use a `ROWS` window to add up the last five trade days.
 
 
     ```
-
     SQL> <copy>SELECT trades.acno, trades.tday, SUM (agg.suma) OVER W
         FROM    trades, (SELECT acno, tday, SUM(amount) AS suma
                         FROM   trades
@@ -203,6 +203,11 @@ There are multiple ways to access your Autonomous Database.  You can access it v
         AND     trades.tday = agg.tday
         AND     trades.ttype = 'buy'
         WINDOW W AS (PARTITION BY trades.acno ORDER BY trades.tday ROWS BETWEEN 4 PRECEDING AND CURRENT ROW);</copy>
+    <if type="atp">
+    ```
+    ![](./images/step2-2.png " ")
+    </if>
+    <if type="dbcs">
 
               ACNO TDAY      SUM(AGG.SUMA)OVERW
     ---------- --------- ------------------
@@ -220,10 +225,8 @@ There are multiple ways to access your Autonomous Database.  You can access it v
           123 16-APR-20              24400
 
     12 rows selected.
-
-    SQL>
-
     ```
+    </if>
 
   The reason why this query works is because it is possible to decompose a sum into partial aggregates, and compute the final sum from those partial aggregates. In this case, the query is decomposing the sum over groups defined by `acno` and `tday`. Then the query gets the sum over 5 trading days by adding the partial sums from the grouped query. `COUNT`, `MAX` and `MIN` are also decomposable aggregates. `AVG` can be decomposed by computing sums and counts and then dividing.
 
@@ -236,29 +239,32 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
 
     ```
-
     SQL> <copy>SELECT acno, tday, SUM(amount) OVER W, COUNT(DISTINCT ticker) OVER W
         FROM   trades
         WHERE  ttype = 'buy'
         WINDOW W AS (PARTITION BY acno ORDER BY tday GROUPS BETWEEN 4 PRECEDING AND CURRENT ROW);</copy>
-
-        SELECT acno, tday, SUM(amount) OVER W, COUNT(DISTINCT ticker) OVER W
-                                                                        *
+    <if type="atp">
+    ```
+    ![](./images/step2-3a.png " ")
+    </if>
+    <if type="dbcs">
     ERROR at line 1:
     ORA-30487: ORDER BY not allowed here
-
-    SQL>
-
     ```
+    </if>
 
   *Aggregate function with `DISTINCT` specification cannot be used with a window specification having a window order clause.*
 
     ```
-
     SQL> <copy>SELECT acno, tday, SUM(amount) OVER W, COUNT(ticker) OVER W
         FROM   trades
         WHERE  ttype = 'buy'
         WINDOW W AS (PARTITION BY acno ORDER BY tday GROUPS BETWEEN 4 PRECEDING AND CURRENT ROW);</copy>
+    <if type="atp">
+    ```
+    ![](./images/step2-3b.png " ")
+    </if>
+    <if type="dbcs">
 
           ACNO TDAY      SUM(AMOUNT)OVERW COUNT(TICKER)OVERW
     ---------- --------- ---------------- ------------------
@@ -276,10 +282,8 @@ There are multiple ways to access your Autonomous Database.  You can access it v
           123 16-APR-20            13000                 12
 
     12 rows selected.
-
-    SQL>
-
     ```
+    </if>
 
   Notice that the syntax avoids the need for a nested grouped query and a join with `TRADES` as it was the case in the previous step.
 
@@ -290,7 +294,6 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
 
     ```
-
     SQL> <copy>@/home/oracle/labs/M104784GC10/create_T_table.sql</copy>
     SQL> SET ECHO ON
 
@@ -353,8 +356,13 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
 
     ```
-
     SQL> <copy>SELECT * FROM t;</copy>
+    <if type="atp">
+    ```
+    ![](./images/select-from-v.png " ")
+    </if>
+    <if type="dbcs">
+
             V
     ----------
             1
@@ -366,13 +374,8 @@ There are multiple ways to access your Autonomous Database.  You can access it v
             6
 
     7 rows selected.
-
-    SQL>
-
     ```
-<if type="atp">
-    ![](./images/select-from-v.png " ")
-</if>
+    </if>
 
 3. Use the `EXCLUDE` options for window frame exclusion with `ROWS`. If `EXCLUDE CURRENT ROW` is specified and the current row is still a member of the window frame, then remove the current row from the window frame. If `EXCLUDE GROUP` is specified, then remove the current row and any peers of the current row from the window frame. 
 
@@ -385,6 +388,11 @@ There are multiple ways to access your Autonomous Database.  You can access it v
                         sum(v) OVER (o ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING EXCLUDE NO OTHERS) AS no_others
                 FROM t
                 WINDOW o AS (ORDER BY v);</copy>
+    <if type="atp">
+    ```
+    ![](./images/exclude-current-row.png " ")
+    </if>
+    <if type="dbcs">
 
                 V CURRENT_ROW  THE_GROUP       TIES  NO_OTHERS
     ---------- ----------- ---------- ---------- ----------
@@ -398,9 +406,7 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
     7 rows selected.
     ```
-<if type="atp">
-    ![](./images/exclude-current-row.png " ")
-</if>
+    </if>
 
 4. If `EXCLUDE TIES` is specified, then remove any rows other than the current row that are peers of the current row from the window frame. If the current row is already removed from the window frame, then it remains removed from the window frame. If `EXCLUDE NO OTHERS` is specified (this is the default), then no additional rows are removed from the window frame by this rule.
     ```
@@ -411,6 +417,11 @@ There are multiple ways to access your Autonomous Database.  You can access it v
                         sum(v) OVER (o ROWS BETWEEN 2 PRECEDING AND 2 FOLLOWING EXCLUDE NO OTHERS) AS no_others
                 FROM t
                 WINDOW o AS (ORDER BY v);</copy>
+    <if type="atp">
+    ```
+    ![](./images/exclude-current-ties.png " ")
+    </if>
+    <if type="dbcs">
 
             V CURRENT_ROW  THE_GROUP       TIES  NO_OTHERS
     ---------- ----------- ---------- ---------- ----------
@@ -423,18 +434,13 @@ There are multiple ways to access your Autonomous Database.  You can access it v
             6          10         10         16         16
 
     7 rows selected.
-
-    SQL>
-
     ```
-<if type="atp">
-    ![](./images/exclude-current-ties.png " ")
-</if>
+    </if>
+
 4. Use the `EXCLUDE` options for window frame exclusion with `RANGE`.
 
 
     ```
-
     SQL> <copy>SELECT v,
                         sum(v) OVER (o RANGE BETWEEN 1 PRECEDING AND 1 FOLLOWING EXCLUDE CURRENT ROW) AS current_row,
                         sum(v) OVER (o RANGE BETWEEN 1 PRECEDING AND 1 FOLLOWING EXCLUDE GROUP) AS the_group,
@@ -442,6 +448,11 @@ There are multiple ways to access your Autonomous Database.  You can access it v
                         sum(v) OVER (o RANGE BETWEEN 1 PRECEDING AND 1 FOLLOWING EXCLUDE NO OTHERS) AS no_others
                 FROM t
                 WINDOW o AS (ORDER BY v);</copy>
+    <if type="atp">
+    ```
+    ![](./images/step3-5.png " ")
+    </if>
+    <if type="dbcs">
 
             V CURRENT_ROW  THE_GROUP       TIES  NO_OTHERS
 
@@ -455,13 +466,8 @@ There are multiple ways to access your Autonomous Database.  You can access it v
             6          15         15         21         21
 
     7 rows selected.
-
-    SQL>
-
     ```
-<if type="atp">
-    ![](./images/exclude-current-ties.png " ")
-</if>
+    </if>
 
 ## **STEP 4:** Experiment the usage of the `GROUPS` and `EXCLUDE` clauses of the window frame
 
@@ -476,6 +482,11 @@ There are multiple ways to access your Autonomous Database.  You can access it v
                     sum(v) OVER (o GROUPS BETWEEN 1 PRECEDING AND 1 FOLLOWING EXCLUDE NO OTHERS) AS no_others
             FROM t
             WINDOW o AS (ORDER BY v);</copy>
+    <if type="atp">
+    ```
+    ![](./images/step4-1.png " ")
+    </if>
+    <if type="dbcs">
 
             V CURRENT_ROW  THE_GROUP       TIES  NO_OTHERS
     ---------- ----------- ---------- ---------- ----------
@@ -489,6 +500,8 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
     7 rows selected.
     ```
+    </if>
+
 <if type="dbcs">
 2. Exit from the sql prompt
 
@@ -510,6 +523,6 @@ You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
 * **Author** - Donna Keesling, Database UA Team
-* **Contributors** -  David Start, Kay Malcolm, Database Product Management
-* **Last Updated By/Date** -  Kay Malcolm, March 2020
+* **Contributors** -  David Start, Kay Malcolm, Didi Han, Database Product Management
+* **Last Updated By/Date** -  Didi Han, April 2021
 

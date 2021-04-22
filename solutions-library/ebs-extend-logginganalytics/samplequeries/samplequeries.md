@@ -4,11 +4,11 @@
 
 This lab will provide various example queries for you to create your own dashboards and widgets
 
-**Estimated Lab Time: 15 minutes**
+Estimated Lab Time: 15 minutes
 
 ### Objectives
 
-**In this lab, you will:**
+In this lab, you will:
 * Be able to use some sample queries to help familiarize yourself further with valuable query searches
 
 ### Prerequisites

@@ -18,7 +18,7 @@ You will also clone a GitHub repository.
 * The OKE cluster and the ATP databases that you created in Lab 1
 
 
-## **STEP 1**: Set values for workshop in the environment and source ~/.bashrc
+## **STEP 1**: Set values for workshop in the environment and source ~/.bashrc 
 
 1. Run `source addAndSourcePropertiesInBashrc.sh`
 
@@ -30,7 +30,28 @@ You will also clone a GitHub repository.
     <copy>source ~/.bashrc</copy>
     ```
 
-## **STEP 2**: Build and push the Docker images
+## **STEP 2**: Understand shortcut commands and development process
+
+A number of shortcut commands are provided in order to analyze and debug the workshop kubernetes environment including the following:
+
+`msdataworkshop` - Lists all of the kubernetes resources (deployments, pods, services, secrets) involved in the workshop
+
+`describepod` - Gives information on a given pod and can use abbreviated names for arguments, such as `describepod admin` or `describepod order`
+
+`logpod` - Provides the logs for a given pod/container and can use abbreviated names for arguments, such as `logpod admin` or `logpod order`
+
+`deletepod` - Deletes a given pod/container and can use abbreviated names for arguments, such as `deletepod admin` or `deletepod order`
+
+As the deployments in the workshop are configured with `imagePullPolicy: Always` , once you have finished the workshop, you can develop and test changes to a microservice using the following sequence...
+    
+    1. Modify microservice source
+    2. Run `./build.sh` to build and push the newly modified microservice image to the repository
+    3. Run `deletepod` (eg `deletepod admin`, `deletepod order`, etc.) to delete the old pod and start a new pod with the new image.
+    4. Verify changes.
+    
+If changes have been made to the deployment yaml then re-run `./deploy.sh` in the appropriate microservice's directory.
+
+## **STEP 3**: Build and push the Docker images
 
 1. Run the `build.sh` script to build and push the
     microservices images into the repository
@@ -53,8 +74,11 @@ You will also clone a GitHub repository.
 3. Mark all the images as public (**Actions** > **Change to Public**):
 
   ![](images/71310f61e92f7c1167f2016bb17d67b0.png " ")
+  
+  NOTE THAT THE IMAGES WILL USUALLY BE LOCATED IN THE ROOT COMPARTMENT.
+  THEREFORE, YOU MAY NEED TO SELECT THE ROOT COMPARTMENT FROM THE `Compartment` DROPDOWN LIST ON THE LEFT.
 
-## **STEP 3**: Build deploy and access FrontEnd UI microservice
+## **STEP 4**: Build deploy and access FrontEnd UI microservice
 
 1. Run `./setJaegerAddress.sh` and verify successful outcome.
 
@@ -88,25 +112,16 @@ You will also clone a GitHub repository.
 
   After a couple of minutes, the image should have been successfully built and pushed into the OCIR repository.
 
-  ![](images/bdd2f05cfc0d1aac84b09dbe5b48993a.png " ")
 
-5.  Go to the Console, click the hamburger menu in the top-left corner and open
-    **Developer Services > Container Registry**.
 
-  ![](images/efcd98db89441f5a40389c99e5afd4b5.png " ")
-
-6. Mark all the images as public (**Actions** > **Change to Public**):
-
-  ![](images/71310f61e92f7c1167f2016bb17d67b0.png " ")
-
-## **STEP 4**: Start the frontend-helidon service
+## **STEP 5**: Start the frontend-helidon service
 
 1.  Run the deploy script from the same directory
     as build. This will create the deployment and pod for this image in the OKE
     cluster `msdataworkshop` namespace:
 
     ```
-    <copy>d $MSDATAWORKSHOP_LOCATION/frontend-helidon;./deploy.sh</copy>
+    <copy>cd $MSDATAWORKSHOP_LOCATION/frontend-helidon;./deploy.sh</copy>
     ```
 
    ![](images/5b817258e6f0f7b55d4ab3f6327a1779.png " ")

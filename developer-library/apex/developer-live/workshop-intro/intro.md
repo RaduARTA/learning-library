@@ -77,7 +77,7 @@ If the menu is not displayed, you can open by clicking the menu button (![Menu i
 
     From the Cloud Dashboard, select the navigation menu icon in the upper left-hand corner and then select **Autonomous Transaction Processing**.
 
-    ![](images/select-atp-in-nav-menu.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 4. Click **Create Autonomous Database**.
 

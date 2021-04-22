@@ -1,6 +1,7 @@
 {
     "workshoptitle": "Get Started with Oracle Database",
-    "help": "livelabs-help-db_us@oracle.com",    
+    "help": "livelabs-help-db_us@oracle.com",
+
     "tutorials": [
         {
             "title": "Introduction",
@@ -18,8 +19,8 @@
             "filename": "./../db-provision/db-provision.md"
         },
         {
-            "title": "Lab 2: Connect to the Database with SQL Developer Web",
-            "description": "Connect to the Database with SQL Developer Web",
+            "title": "Lab 2: Connect to the Database with SQL Worksheet",
+            "description": "Connect to the Database with SQL Worksheet",
             "filename": "./../db-connect-sqldev-web/db-connect-sqldev-web.md"
         },
        {

@@ -48,7 +48,7 @@ In this lab, you will:
 <if type="atp">
 ## **STEP  1**: Login to SQL Developer Web on ADB
 
-There are multiple ways to access your Autonomous Database.  You can access it via sqlplus or by using SQL Developer Web.  To access it via sqlplus, skip to [Step 1B](#STEP1B:LogintoADBusingSQLPlus).
+There are multiple ways to access your Autonomous Database.  You can access it via SQL\*Plus or by using SQL Developer Web.  To access it via SQL\*Plus, skip to [Step 1B](#STEP1B:LogintoADBusingSQLPlus).
 
 1.  If you aren't still logged in, login to your ADB screen by clicking on the Hamburger Menu and selecting the Autonomous Database flavor you selected (ATP, ADW or AJD). Otherwise skip to the next step.
       ![](../set-operators/images/21c-home-adb.png " ")
@@ -60,14 +60,13 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 4.  Click on the **Tools** tab, select **Database Actions**, a new browser will open up.
       ![](../set-operators/images/tools.png " ")
 
-5.  Login with the *admin* user, click **Next**.  Enter the password *WElcome123##* 
-6.  Click on the **SQL** button.
-7.  Enter the username *hr* and password *WElcome123##*
+5.  Login using the username *hr* and password *WElcome123##*
+6.  Click on the **SQL** button. 
 
 ## **STEP  1B**: Login to ADB using SQL Plus
 1. If you aren't logged into the cloud, log back in
 2. Open up Cloud Shell 
-3. Connect to the HR user using sqlplus by entering the commands below.
+3. Connect to the HR user using SQL\*Plus by entering the commands below.
    
     ```
     export TNS_ADMIN=$(pwd)/wallet
@@ -84,50 +83,57 @@ There are multiple ways to access your Autonomous Database.  You can access it v
     SQL> <copy>
     WITH x AS (SELECT 2 c1 FROM dual UNION ALL SELECT 3 FROM dual)
     SELECT BIT_AND_AGG(c1) FROM x;</copy>
-
+    <if type="atp">
+    ```
+    ![](./images/step2-1.png " ")
+    </if>
+    <if type="dbcs">
     BIT_AND_AGG(C1)
     ---------------
                   2
-    SQL>
-
     ```
+    </if>
 
-## **STEP 2:** Test the bitwise OR function
+## **STEP 3:** Test the bitwise OR function
 
 A bitwise OR is a binary operation that takes two bit patterns of equal length and performs the logical inclusive OR operation on each pair of corresponding bits. The result in each position is 0 if both bits are 0, otherwise the result is 1.
 
 1. Apply the `BIT_OR_AGG` function on two numbers.
 
     ```
-
     SQL> <copy>WITH x AS (SELECT 2 c1 FROM dual UNION ALL SELECT 3 FROM dual)
-                  SELECT BIT_OR_AGG(c1) FROM x;</copy>
-
+    SELECT BIT_OR_AGG(c1) FROM x;</copy>
+    <if type="atp">
+    ```
+    ![](./images/step3-1.png " ")
+    </if>
+    <if type="dbcs">
     BIT_OR_AGG(C1)
     --------------
                 3
-
-    SQL>
-
     ```
-
-## **STEP 3:** Test the bitwise XOR function
+    </if>
+    
+## **STEP 4:** Test the bitwise XOR function
 
 A bitwise XOR is a binary operation that takes two bit patterns of equal length and performs the logical exclusive OR operation on each pair of corresponding bits. The result in each position is 1 if only the first bit is 1 or only the second bit is 1, but will be 0 if both are 0 or both are 1. Therefore, the comparison of two bits results in 1 if the two bits are different, and 0 if they are equal.
 
 1. Apply the `BIT_XOR_AGG` function on two numbers.
 
     ```
-
     SQL> <copy>WITH x AS (SELECT 2 c1 FROM dual UNION ALL SELECT 3 FROM dual)
-                  SELECT BIT_XOR_AGG(c1) FROM x;</copy>
-
+    SELECT BIT_XOR_AGG(c1) FROM x;</copy>
+    <if type="atp">
+    ```
+    ![](./images/step4-1.png " ")
+    </if>
+    <if type="dbcs">
     BIT_XOR_AGG(C1)
     ---------------
                   1
-
-    SQL> 
     ```
+    </if>
+
 
 <if type="dbcs">
 2.  Exit SQL*Plus
@@ -150,6 +156,6 @@ You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
 * **Author** - Donna Keesling, Database UA Team
-* **Contributors** -  David Start, Kay Malcolm, Database Product Management
-* **Last Updated By/Date** -  Kay Malcolm, March 2020
+* **Contributors** -  David Start, Kay Malcolm, Didi Han, Database Product Management
+* **Last Updated By/Date** -  Didi Han, April 2021
 

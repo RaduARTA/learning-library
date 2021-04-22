@@ -42,23 +42,23 @@ In this lab, you will:
 
 2. Select Availability Domain and Shape for the Compute Instance.   
 
-  *  Details on compute shapes are [here](https://docs.oracle.com/en-us/iaas/Content/Compute/References/computeshapes.htm)
-  *  Check for quota availability of your desired Shape in Availabilty Domains
-    *  This is particularly important when using an Always Free shape.
-    *  In the OCI Console, navigate to Governance > Limits, Quotas, and Usage
-    *  For Service select Compute and for Scope select an Availability Domain. Confirm availability of your desired Shape. Change the Availability Domain selection if necessary to identify available quota.
+   Details on compute shapes are [here](https://docs.oracle.com/en-us/iaas/Content/Compute/References/computeshapes.htm). Check for quota availability of your desired Shape in Availability Domains. This is particularly important when using an Always Free shape:
+      *  In the OCI Console, navigate to Governance > Limits, Quotas, and Usage
+      *  For Service select Compute and for Scope select an Availability Domain 
+      *  Confirm availability of your desired Shape
+      *  Change the Availability Domain selection if necessary to identify available quota
 
-  ![Image alt text](images/env-marketplace-4-1.png "Image title")
+    ![Image alt text](images/env-marketplace-4-1.png "Image title")
 
-  Make selections.
+      Having confirmed quota, make selections in Create Stack wizard.
 
-  ![Image alt text](images/env-marketplace-5.png "Image title")
+    ![Image alt text](images/env-marketplace-5.png "Image title")
 
-  Then scroll down.
+      Then scroll down.
 
 3. Optionally change the HTTPS port and Spatial Studio admin user name from the defaults. For Spatial Studio Admin authentication, you have the option to use OCI Vault Secrets or a password. The image below shows an example using a password. For production deployments you are encouraged to use OCI Vault Secrets. Scroll down to the the section on Configuring Networking.
    
-   Note: By default the Spatial Studio admin user name is **studio\_admin**. This is an Spatial Studio application user and is distinct from the database user name (studio\_repo) created in Lab 3 for the repository schema.
+   Note: By default the Spatial Studio admin user name is **admin**. This is an Spatial Studio application user and is distinct from the database user name (studio\_repo) created in Lab 3 for the repository schema.
   
 
   ![Image alt text](images/env-marketplace-6.png "Image title")
@@ -71,7 +71,7 @@ In this lab, you will:
 
   Scroll down to the SSH Keys section.
 
-1. Loading a SSH public key enables access to Spatial Studio's file system for administrative purposes. The dialog has links to general SSH connection documentation. Submit your SSH public key by browsing to the key file or copy-pasting the key string. If you load you SSH public key from a file, the key file name will be displayed as shown in the image below. Click Next.
+5. Loading a SSH public key enables access to Spatial Studio's file system for administrative purposes. The dialog has links to general SSH connection documentation. Submit your SSH public key by browsing to the key file or copy-pasting the key string. If you load you SSH public key from a file, the key file name will be displayed as shown in the image below. Click Next.
 
   ![Image alt text](images/env-marketplace-8.png "Image title")
 

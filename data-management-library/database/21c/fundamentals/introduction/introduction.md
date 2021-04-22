@@ -7,8 +7,6 @@ The 21c generation of Oracle's converged database offers customers; best of bree
 
 21c is the latest and greatest way to get the latest and greatest technologies out to our customers so as they start considering new applications, they can start now and be ready for the next long term support release.  Our current long term support release is Oracle Database 19c.
 
- ![Oracle DB 21c Advantages](images/21c-support.png "Oracle DB 21c Advantages")
-
 Oracle Database 21c enables SQL, REST and API transactions across all types of data models.  It is being released cloud-first with on-premises following shortly after. Some key inovations are:
 * Native JSON binary data type
 * Blockchain Tables

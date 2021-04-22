@@ -29,7 +29,7 @@ Oracle’s Autonomous Database is the perfect quick-start service for fast data 
 - **Lab 5:** Query files on the Oracle Cloud Infrastructure Object Storage (OCI) directly without loading them to your database.
 - **Lab 6:** Scale up your Oracle Autonomous Database service to have more CPUs.
 
-**After reading the following workshop prerequisites, get started by clicking Lab 1 in the Contents menu on the right.**
+**After reading the following workshop prerequisites, get started by clicking Getting Started in the Contents menu on the left.**
 
 ## Workshop Prerequisites
 This workshop requires an Oracle Cloud account. As a result of registering for LiveLabs, you will receive an email with instructions for accessing your account.
@@ -52,5 +52,4 @@ Use these links to get more information about Oracle Autonomous Database:
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Richard Green, April 2020
-
+- **Last Updated By/Date** - Richard Green, April 2021

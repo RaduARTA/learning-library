@@ -4,11 +4,11 @@
 
 This lab will ingest network, audit, server and application logs into OCI Logging Analytics Service
 
-**Estimated Lab Time: 1 hour**
+Estimated Lab Time: 1 hour
 
 ### Objectives
 
-**In this lab, you will:**
+In this lab, you will:
 * Pull data from Logging Entities: Servers, EBS Application and Database, Network and Audit Flow logs
 * At the end of this lab you will have your log data in Logging Analytics
 
@@ -54,7 +54,7 @@ This lab will ingest network, audit, server and application logs into OCI Loggin
 
 4. Once complete your Logs should look like this:
 
-![](./images/subnetlogs.png " ")
+  ![](./images/subnetlogs.png " ")
 
 ## **STEP 2:** Create Service Connectors for Audit and Network Logs
     
@@ -94,11 +94,11 @@ This lab will ingest network, audit, server and application logs into OCI Loggin
 
 3. You can now go to Logging Analytics - Administration
 
-**You will now see entities have been automatically created.**
+  **You will now see entities have been automatically created.**
 
-**You can also go to Logging Analytics - Log Explorer and should see a pie with data similar to what is shown below**
+  **You can also go to Logging Analytics - Log Explorer and should see a pie with data similar to what is shown below**
       
-![](./images/firstlogexview.png " ")
+  ![](./images/firstlogexview.png " ")
 
 ## **STEP 3:** Install Management Agents on your Hosts
 
@@ -202,7 +202,7 @@ Now we will walk through installing management agents on our hosts. Because we a
     </copy>
     ```
 
-![](./images/startagent.png " ")
+  ![](./images/startagent.png " ")
 
 10. Now to install our agent on the other instances built with our cloud manager we will move the `ebs_agent_key.txt` and oracle mgmt agent to our Oracle Home Directory
 
@@ -224,7 +224,7 @@ Now we will walk through installing management agents on our hosts. Because we a
 
 12. Go to the /tmp folder and using vi, edit the `ebs_agent_key.txt` file and change the name to refer to the server. We will use the same .txt file. 
   
-13. Once you edited the `ebs_agent_key.txt` file you can repeat the steps for install starting from `g.` to `j.` on each instance you want to monitor then exit to repeat. 
+13. Once you edited the `ebs_agent_key.txt` file you can repeat the steps for install starting from `6.` to `9.` on each instance you want to monitor then exit to repeat. 
 
 Note: You can also follow the recommended procedure of deleting your key file from your instance one the agent has been installed and is configured properly 
     
@@ -235,6 +235,8 @@ Note: You can also follow the recommended procedure of deleting your key file fr
 **Note:** If you have other instances not created with the cloud manager follow the same steps to add the agent and key file to those instances and install.
 
 This will now complete the Ingest Logs to Logging Analytics Lab for this workshop.
+
+You may now proceed to the next lab.
 
 ## Acknowledgements
 * **Author** - Quintin Hill, Cloud Engineering, Packaged Applications

@@ -99,7 +99,7 @@ In this lab, you will:
 </if>
 <if type="atp">
 ## **STEP  1**: Login to SQL Developer Web on ADB
-There are multiple ways to access your Autonomous Database.  You can access it via sqlplus or by using SQL Developer Web.  To access it via sqlplus, skip to [Step 1B](#STEP1B:LogintoADBusingSQLPlus).
+There are multiple ways to access your Autonomous Database.  You can access it via SQL\*Plus or by using SQL Developer Web.  To access it via SQL\*Plus, skip to [Step 1B](#STEP1B:LogintoADBusingSQLPlus).
 
 1.  If you aren't still logged in, login to your ADB screen by clicking on the Hamburger Menu and selecting the Autonomous Database flavor you selected (ATP, ADW or AJD). Otherwise skip to the next step.
       ![](../set-operators/images/21c-home-adb.png " ")
@@ -111,14 +111,13 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 4.  Click on the **Tools** tab, select **Database Actions**, a new browser will open up.
       ![](../set-operators/images/tools.png " ")
 
-5.  Login with the *admin* user, click **Next**.  Enter the password *WElcome123##* 
+5.  Login with the *hr* user, click **Next**.  Enter the password *WElcome123##* 
 6.  Click on the **SQL** button.
-7.  Enter the username *hr* and password *WElcome123##*
 
 ## **STEP  1B**: Login to ADB using SQL Plus
 1. If you aren't logged into the cloud, log back in
 2. Open up Cloud Shell 
-3. Connect to the HR user using sqlplus by entering the commands below.
+3. Connect to the HR user using SQL\*Plus by entering the commands below.
    
     ```
     export TNS_ADMIN=$(pwd)/wallet
@@ -136,15 +135,15 @@ There are multiple ways to access your Autonomous Database.  You can access it v
     CREATE TABLE hr.t1 ( a CLOB) LOB(a) STORE AS SECUREFILE TABLESPACE data;
     </copy>
     ```
-    [](./images/secure-insert.png " ")
+    ![](./images/step2-1.png " ")
 
 </if>
 
 1. Insert rows, update the CLOB data and commit.
 
-
+<if type="dbcs">
+    
     ```
-
     SQL> <copy>INSERT INTO hr.t1 values ('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');</copy>
     1 row created.
 
@@ -172,20 +171,42 @@ There are multiple ways to access your Autonomous Database.  You can access it v
     Commit complete.
 
     SQL>
-
     ```
+</if>
+<if type="atp">
+    
+    ```
+    SQL> <copy>INSERT INTO hr.t1 values ('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');</copy>
+    SQL> <copy>INSERT INTO hr.t1 Select * from hr.t1;</copy>
+    SQL> <copy>INSERT INTO hr.t1 Select * from hr.t1;</copy>
+    SQL> <copy>INSERT INTO hr.t1 Select * from hr.t1;</copy>
+    SQL> <copy>UPDATE hr.t1 SET a=a||a||a||a||a||a||a;</copy>
+    SQL> <copy>UPDATE hr.t1 SET a=a||a||a||a||a||a||a;</copy>
+    SQL> <copy>COMMIT;</copy>
+    ```
+    ![](./images/step2-2.png " ")
+</if>
 
 2. Shrink the LOB segment.
 
+<if type="dbcs">
+    ````
+    SQL> <copy>ALTER TABLE hr.t1 MODIFY LOB(a) (SHRINK SPACE);</copy>
+    
+    Table altered.
 
+    SQL>
+    ````
+</if>
+
+<if type="atp">
     ```
     SQL> <copy>ALTER TABLE hr.t1 MODIFY LOB(a) (SHRINK SPACE);</copy>
-    Table altered.
-    SQL>
     ```
-<if type="atp">    
-    [](./images/shrink-space.png " ")
+
+    ![](./images/step2-3.png " ")
 </if>
+
 <if type="dbcs">
 
 3. Display the number of extents or blocks freed. **Make note of the LOB_OBJD for use in later commands**
@@ -225,7 +246,7 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
 1. Update the CLOB.
 
-
+<if type="dbcs">
     ```
     SQL> <copy>UPDATE hr.t1 SET a=a||a||a||a||a||a||a;</copy>
     8 rows updated.
@@ -244,12 +265,24 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
     SQL>
     ```
-<if type="atp">    
-    [](./images/update.png " ")
+</if>
+
+<if type="atp">
+    
+    ```
+    SQL> <copy>UPDATE hr.t1 SET a=a||a||a||a||a||a||a;</copy>
+    SQL> <copy>UPDATE hr.t1 SET a=a||a||a||a||a||a||a;</copy>
+    SQL> <copy>UPDATE hr.t1 SET a=a||a||a||a||a||a||a;</copy>
+    SQL> <copy>UPDATE hr.t1 SET a=a||a||a||a||a||a||a;</copy>
+    SQL> <copy>COMMIT;</copy>
+    ```
+
+    ![](./images/step3-1.png " ")
 </if>
 
 2. Shrink the LOB segment.
 
+<if type="dbcs">
 
     ```
     SQL> <copy>ALTER TABLE hr.t1 MODIFY LOB(a) (SHRINK SPACE);</copy>
@@ -257,9 +290,15 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
     SQL>
     ```
+</if>
 
-<if type="atp">    
-    [](./images/shrink-space.png " ")
+<if type="atp">
+
+    ```
+    SQL> <copy>ALTER TABLE hr.t1 MODIFY LOB(a) (SHRINK SPACE);</copy>
+    ```
+
+    ![](./images/step3-2.png " ")
 </if>
 
 <if type="dbcs">    
@@ -320,9 +359,9 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
 4. Update the CLOB.
 
-
+<if type="dbcs">
+    
     ```
-
     SQL> <copy>UPDATE hr.t1 SET a=a||a;</copy>
 
     8 rows updated.
@@ -332,21 +371,37 @@ There are multiple ways to access your Autonomous Database.  You can access it v
     Commit complete.
 
     SQL>
-
     ```
+
+</if>
+<if type="atp">
+    
+    ```
+    SQL> <copy>UPDATE hr.t1 SET a=a||a;</copy>
+    SQL> <copy>COMMIT;</copy>
+    ```
+
+    ![](./images/step3-3.png " ")
+</if>
+
+
 
 5. Shrink the LOB segment.
 
-
     ```
-
     SQL> <copy>ALTER TABLE hr.t1 MODIFY LOB(a) (SHRINK SPACE);</copy>
-
+    <if type="atp">
+    ```
+    ![](./images/step3-4.png " ")
+    </if>
+    <if type="dbcs">
     Table altered.
 
     SQL>
-
     ```
+    </if>
+
+
 <if type="dbcs">    
 
 6. Display the number of extents or blocks freed. **Put the LOB_OBJD you saved from the previous step in and run the command**
@@ -384,15 +439,21 @@ There are multiple ways to access your Autonomous Database.  You can access it v
 
                 16          3
     ```
-    ```
-
-    SQL> <copy>EXIT</copy>
-
-    $
-
-    ```
 
   As a result, 2552 blocks are freed. Observe that only the row of the previous shrinking operation is kept.
+</if>
+
+<if type="atp">
+5. Click the down arrow in the upper right corner and **Sign Out** of the HR user.
+</if>
+<if type="dbcs">
+5.  Exit from the sql prompt
+
+	```
+	SQL> <copy>EXIT</copy>
+	$
+
+	```
 </if>
 
 You may now [proceed to the next lab](#next).
@@ -403,6 +464,6 @@ You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
 * **Author** - Donna Keesling, Database UA Team
-* **Contributors** -  David Start, Kay Malcolm, Database Product Management
-* **Last Updated By/Date** -  Kay Malcolm, March 2020
+* **Contributors** -  David Start, Kay Malcolm, Didi Han, Database Product Management
+* **Last Updated By/Date** -  Didi Han, April 2021
 

@@ -6,7 +6,7 @@ This lab is intended to give you familiarity with how to configure GG for databa
 secured, reliable and fault-tolerant in data delivery. It is easy to install, configure and maintain real-time changed data.
 It is easily extensible and flexible to stream transformed data to other relational targets
 
-*Estimated Lab Time*:  60 minutes
+*Estimated Lab Time*:  30 minutes
 
 ### Lab Architecture
 
@@ -14,7 +14,7 @@ It is easily extensible and flexible to stream transformed data to other relatio
 
 ### Objectives
 
-To use GoldegGate to perform transformations on the data during the replication process. Even though GoldenGate is primarily a real time data replication tool, it does have the ability to create data transformations. In this lab we will create sample transformations to showcase this feature of GoldenGate.
+To use GoldenGate to perform transformations on the data during the replication process. Even though GoldenGate is primarily a real time data replication tool, it does have the ability to create data transformations. In this lab we will create sample transformations to showcase this feature of GoldenGate.
 
 
 ### Prerequisites
@@ -70,7 +70,7 @@ In this lab we will setup GoldenGate Microservices Transformations
     ![](./images/i02.png " ")
 
 ## **STEP 2:** Concatenating the source *m* columns into target single *n* columns
-The picture below represent the summary of the transformations we will be performing in this step
+The picture below represents the summary of the transformations we will be performing in this step
 
   ![](./images/c1.png " ")
 
@@ -328,7 +328,7 @@ In this step we will mask the email ID field extracted at the source and replace
 
 Oracle GoldenGate offers high-performance, fault-tolerant, easy-to-use, and flexible real- time data streaming platform. It easily extends customers’ real-time data integration architectures without impacting the performance of the source systems and enables timely business insight for better decision making.
 
-You may now *proceed to the next lab*.
+You may now [proceed to the next lab](#next).
 
 ## Learn More
 
@@ -338,5 +338,3 @@ You may now *proceed to the next lab*.
 * **Author** - Madhu Kumar S. Data Integration, December 2020
 * **Contributors** - Brian Elliott, Rene Fontcha
 - **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, January 2021
-
-

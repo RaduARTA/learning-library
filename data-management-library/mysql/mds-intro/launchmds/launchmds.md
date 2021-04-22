@@ -105,8 +105,8 @@ You must have an OCI tenancy subscribed to your home region and enough limits co
 4. Create a VCN with Internet Connectivity 
 
     On Basic Information  Complete the following fields 
-    * VCN Name **MDS_VCN**    
-    * Compartment **MDS_Sandbox** 
+    - VCN Name **MDS_VCN**    
+    - Compartment **MDS_Sandbox** 
 
     Your screen should look similar to the following
     ![VCN](./images/03vcn044.png " ")
@@ -137,7 +137,7 @@ You must have an OCI tenancy subscribed to your home region and enough limits co
 12.	On Security List for Private Subnet-MDS_VCN  page, under Ingress Rules, click on Add Ingress Rules.
     ![COMPUTE](./images/03vcn11.png " ")
 
-13.	On Add Ingress Rule, add an Ingress Rule with Source CIDR 0.0.0.0/0 and Destination Port Name 3306 
+13.	On Add Ingress Rule, add an Ingress Rule with Source CIDR 0.0.0.0/0 and Destination Port Name 3306, 33060 
 
     Click on Add Ingress Rule.
     ![COMPUTE](./images/03vcn12.png " ")
@@ -149,73 +149,86 @@ You must have an OCI tenancy subscribed to your home region and enough limits co
 
 ## **STEP 4:** Create a MySQL DB System.
 
-1. On the Navigation Menu, under Database, select MySQL -> DB Systems
+1. Open the navigation menu. Under MySQL, click DB Systems
     ![MDS](./images/04mysql01.png " ")
 
-2. On DB Systems in **MDS_Sandbox** Compartment, click on Create MySQL DB System.
+2. Click on Create MySQL DB System
     ![MDS](./images/04mysql02.png" ")
 
-3. On Create MySQL DB System, under Provide basic information for the DB System
+3. On Create MySQL DB System dialog complete the fields in each section
+
+    - Provide basic information for the DB System
+    - Setup your required DB System
+    - Create Administrator credentials
+    - Configure Networking
+    - Configure placement
+    - Configure hardware
+    - Configure Backups
+    - Show Advanced Options
+
+4. On Provide basic information for the DB System:
       
     Select Compartment **MDS_Sandbox**
       
-    For Name enter **MDS_DB**
+    Name enter **MDS_DB**
       
-    For Description enter **MDS_DB**
+    Description enter **MDS_DB**
 
-    Select **Standalone** to specify a single-instance DB System
-    ![MDS](./images/04mysql02_1.png " ")
+    ![MDS](./images/04mysql02_02.png " ")
 
-4. On Create Administrator credentials
-
-    Set Username to **admin**
-
-    Set Administrator user's password to **Welcome1!**  
+5. On Setup your required DB System 
     
-    Confirm password with **Welcome1!**
-    ![MDS](./images/04mysql02_2.png " ")
+    System Select **Standalone** to specify a single-instance DB System
+    ![MDS](./images/04mysql02_03.png " ")
 
-5. Configure networking Keep default values
+6. On Create Administrator credentials
 
-    Create VCN and Subnets "Virtual Cloud Network in MDS_Sandbox"  
+    Username to **admin**
 
-    should be **MDS_VCN**
+    Password to **Welcome1!**  
     
-    "Subnet in MDS_Sandbox" 
+    Confirm Password **Welcome1!**
+    ![MDS](./images/04mysql02_04.png " ")
+
+7. On Configure networking Keep default values
+
+    Virtual Cloud Network: **MDS_VCN**
     
-    should be **Private Subnet-MDS_VCN (Regional)**
+    Subnet: **Private Subnet-MDS_VCN (Regional)**
 
-    ![MDS](./images/04mysql02_3.png " ")
+    ![MDS](./images/04mysql02_05.png " ")
 
-6. On Configure placement  keep  "Availability Domain" checked
+8. On Configure placement  keep checked  "Availability Domain"
     
-    Do not check "Choose a Fault Domain" for this DB System
-    ![MDS](./images/04mysql02_4.png" ")
+    Do not check "Choose a Fault Domain" for this DB System. Oracle will chooses the best placement for you.
+    ![MDS](./images/04mysql02_06.png" ")
 
-7. On Configure hardware keep default shape  **Shape MySQL.VM.Standard.E3.1.8GB**
+9. On Configure hardware keep default shape  **MySQL.VM.Standard.E3.1.8GB**
 
     Data Storage Size (GB) keep default value **50**
-    ![MDS](./images/04mysql02_5.png" ")
+    ![MDS](./images/04mysql02_07.png" ")
 
-8. On Configure Backups, keep  "Enable Automatic Backups" checked
+19. On Configure Backups, keep  "Enable Automatic Backups" checked
     
     set Retention period to **7**
     
     select "Default Backup Window"
     
-    Click on Create button.
-    ![MDS](./images/04mysql05_2.png" ")
+    ![MDS](./images/04mysql02_08.png" ")
+    
+20. Click on Create button 
+    ![MDS](./images/04mysql02_09.png" ")
 
-9. The New MySQL DB System will be ready to use after a few minutes. 
+11. The New MySQL DB System will be ready to use after a few minutes. 
 
     The state will be shown as Creating during the creation
-    ![MDS](./images/04mysql06.png" ")
+    ![MDS](./images/04mysql02_10.png" ")
 
-10. The state Active indicates that the DB System is ready to use. 
+12. The state Active indicates that the DB System is ready to use. 
 
     Check the MySQL endpoint (Address) under Instances in the MySQL DB System Details page. 
 
-    ![MDS](./images/04mysql07.png" ")
+    ![MDS](./images/04mysql02_11.png" ")
 
 ## **STEP 5:** Create Client Virtual Machine
 
@@ -244,14 +257,14 @@ When you are finished, return to this step.
    For VCN make sure **MDS_VCN** is selected, "Assign a public IP address" should be set to Yes.  
     ![COMPUTE](./images/05compute04.png " ")
 
-
-7. If you have not already created your SSH key, perform "Lab 1: Create Local SSH Key". 
-    
-   When you are done return to the next line (STEP 5: #8) .
-
-8.  Add SSH Keys: Select CHOOSE SSH KEY FILES and browse to select the
-    SSH public key, which was created earlier. (In this example it is id_rsa).
-
+7. If you have not already created your SSH key, perform "Lab 1: Create Local SSH Key".  When you are done return to the next line (STEP 5: #8) .
+8. In the Add SSH keys section, generate an SSH key pair or upload your own public key. Select one of the following options: 
+* **Generate SSH keys:** Oracle Cloud Infrastructure generates an RSA key pair for the instance. Click Save Private Key, and then save the private key on your computer. Optionally, click Save Public Key and then save the public key.
+* **Generate SSH keys:** Oracle Cloud Infrastructure generates an RSA key pair for the instance. Click Save Private Key, and then save the private key on your computer. Optionally, click Save Public Key and then save the public key.  
+* **Choose SSH key files:** Upload the public key portion of your key pair. Either browse to the key file that you want to upload, or drag and drop the file into the box. To provide multiple keys, press and hold down the Command key (on Mac) or the CTRL key (on Windows) while selecting files.
+* **Paste SSH keys:** Paste the public key portion of your key pair in the box.
+* **No SSH keys:** Do NOT select this option! You will not be able to connect to the Compute Instance using SSH.
+  
     ![COMPUTE](./images/05compute06.png " ")
 
 9. The New Virtual Machine will be ready to use after a few minutes. The state will be shown as Provisioning during the creation
@@ -413,7 +426,7 @@ When delete process is done **MDS_DB** will be set to Delete status.
 ## Acknowledgements
 * **Author** -  Airton Lastori, MySQL Principal Product Manager, MySQL Product Management 
 * **Contributors** -  Priscila Galvao, MySQL Solution Engineering
-* **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering, March 2021
+* **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering, April 2021
 
 
 

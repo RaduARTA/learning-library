@@ -1,9 +1,16 @@
 # In-Memory Queries
 
 ## Introduction
-Watch a preview video of querying the In-Memory Column Store
+
+In this lab you will perform various queries on the In-Memory Column Store.
+
+Watch a preview video to get an explanation of querying the In-Memory Column Store.
 
 [](youtube:U9BmS53KuGs)
+
+Quick walk through on how to perform In-Memory queries.
+
+[](youtube:o7XD1TIcx5s)
 
 ### Objectives
 

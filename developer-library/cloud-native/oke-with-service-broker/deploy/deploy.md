@@ -68,7 +68,7 @@ For this lab you will need to have installed the required software:
 
     ```bash
     <copy>
-    source ./TF_VARS.sh
+    . ./TF_VARS.sh
     </copy>
     ```
 
